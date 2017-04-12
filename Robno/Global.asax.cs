@@ -18,6 +18,11 @@ namespace Robno
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //dodano zbog seed-anja
+            System.Data.Entity.Database.SetInitializer(
+            new Robno.Models.RobnoContextInitializer());
+
         }
     }
 }
