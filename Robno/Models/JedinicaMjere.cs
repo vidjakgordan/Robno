@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Robno.Models
 {
-    public class ArtKls
+    public class JedinicaMjere
     {
-        public int ArtKlsID { get; set; }
+        public int JedinicaMjereID { get; set; }
 
         public string Naziv { get; set; }
         public string Kratica { get; set; }

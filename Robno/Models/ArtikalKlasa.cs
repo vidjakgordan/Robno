@@ -5,12 +5,13 @@ using System.Web;
 
 namespace Robno.Models
 {
-    public class SifPlac
+    public class ArtikalKlasa
     {
-        public int SifPlacID { get; set;}
+        public int ArtikalKlasaID { get; set; }
+
         public string Naziv { get; set; }
         public string Kratica { get; set; }
 
-        public virtual ICollection<Racun> Racuns { get; set; }
+        public virtual ICollection<Artikal> Artikals { get; set; }
     }
 }

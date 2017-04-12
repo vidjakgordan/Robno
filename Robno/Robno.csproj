@@ -185,16 +185,16 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artikal.cs" />
-    <Compile Include="Models\ArtKls.cs" />
+    <Compile Include="Models\ArtikalKlasa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\JedMje.cs" />
+    <Compile Include="Models\JedinicaMjere.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PoslPart.cs" />
-    <Compile Include="Models\PrimArt.cs" />
+    <Compile Include="Models\PoslovniPartner.cs" />
+    <Compile Include="Models\StavkaPrimke.cs" />
     <Compile Include="Models\Primka.cs" />
-    <Compile Include="Models\RacArt.cs" />
+    <Compile Include="Models\StavkaRacuna.cs" />
     <Compile Include="Models\Racun.cs" />
-    <Compile Include="Models\SifPlac.cs" />
+    <Compile Include="Models\NacinPlacanja.cs" />
     <Compile Include="Models\Tarifa.cs" />
     <Compile Include="Models\Valuta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

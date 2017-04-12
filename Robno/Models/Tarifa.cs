@@ -13,6 +13,6 @@ namespace Robno.Models
         public double Stopa { get; set; }
 
         public virtual ICollection<Artikal> Artikals { get; set;}
-        public virtual ICollection<RacArt> RacArts { get; set; }
+        public virtual ICollection<StavkaRacuna> StavkaRacunas { get; set; }
     }
 }

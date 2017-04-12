@@ -5,9 +5,9 @@ using System.Web;
 
 namespace Robno.Models
 {
-    public class PoslPart
+    public class PoslovniPartner
     {
-        public int PoslPartID { get; set; }
+        public int PoslovniPartnerID { get; set; }
 
         public string Naziv { get; set;}
         public string Adresa { get; set; }
