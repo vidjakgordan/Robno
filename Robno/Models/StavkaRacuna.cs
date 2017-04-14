@@ -9,11 +9,11 @@ namespace Robno.Models
     {
         public int StavkaRacunaID { get; set; }
 
-        public int RedniBrojStavke { get; set; }
-        public double Kolicina { get; set; }
-        public double NabavnaCijena { get; set; }
-        public double ProdajnaCijena { get; set; }
-        public double Popust { get; set; }
+        public int? RedniBrojStavke { get; set; }
+        public double? Kolicina { get; set; }
+        public double? NabavnaCijena { get; set; }
+        public double? ProdajnaCijena { get; set; }
+        public double? Popust { get; set; }
         
         public virtual Tarifa Tarifa { get; set; }
         

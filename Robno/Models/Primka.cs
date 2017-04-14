@@ -9,12 +9,12 @@ namespace Robno.Models
     {
         public int PrimkaID { get; set; }
 
-        public DateTime DatumIzdavanja { get; set; }
-        public DateTime DatumUnosa { get; set; }
-        public double ValutaTecaj { get; set; }
-        public double UkupniIznos { get; set; }
+        public DateTime? DatumIzdavanja { get; set; }
+        public DateTime? DatumUnosa { get; set; }
+        public double? ValutaTecaj { get; set; }
+        public double? UkupniIznos { get; set; }
         public string Napomena { get; set; }
-        public int Status { get; set; } // za kasnije
+        public int? Status { get; set; } // za kasnije
 
         public virtual PoslovniPartner PoslovniPartner { get; set; }
         public virtual Valuta Valuta { get; set; }

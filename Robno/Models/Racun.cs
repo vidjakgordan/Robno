@@ -9,12 +9,12 @@ namespace Robno.Models
     {
         public int RacunID { get; set; }
 
-        public DateTime DatumIzdavanja { get; set; }
+        public DateTime? DatumIzdavanja { get; set; }
         public string Napomena { get; set; }
         public string ZKI { get; set; }
         public string JIR { get; set; }
-        public double UkupniIznos { get; set; }
-        public int Status { get; set; } // za nesto kasnije
+        public double? UkupniIznos { get; set; }
+        public int? Status { get; set; } // za nesto kasnije
         
         public virtual PoslovniPartner PoslovniPartner { get; set; }
         public virtual NacinPlacanja NacinPlacanja { get; set; }

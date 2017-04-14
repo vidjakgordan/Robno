@@ -13,10 +13,10 @@ namespace Robno.Models
         public string Opis { get; set; }
         public string BarCode { get; set; }
         public string DodatnaSifra { get; set; }
-        public double Tezina { get; set; } // ovo samo nasilu broj u KG
-        public double NabavnaCijena { get; set; }
-        public double ProdajnaCijena { get; set; }
-        public double Kolicina { get; set; }
+        public double? Tezina { get; set; } // ovo samo nasilu broj u KG
+        public double? NabavnaCijena { get; set; }
+        public double? ProdajnaCijena { get; set; }
+        public double? Kolicina { get; set; }
 
         public virtual JedinicaMjere JedinicaMjere { get; set; }
         public virtual ArtikalKlasa ArtikalKlasa { get; set; }

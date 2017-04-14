@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace Robno.Models
 {
-    public class RobnoContextInitializer : DropCreateDatabaseIfModelChanges<RobnoContext>
+    public class RobnoContextInitializer : DropCreateDatabaseAlways<RobnoContext>
     {
         protected override void Seed(RobnoContext context)
         {
@@ -163,6 +163,7 @@ namespace Robno.Models
                     Racun=context.Racuns.FirstOrDefault(x=>x.RacunID==2)
                 }
             };
+            stavkaracuna.ForEach(p => context.StavkaRacunas.Add(p));
             context.SaveChanges();
 
 
