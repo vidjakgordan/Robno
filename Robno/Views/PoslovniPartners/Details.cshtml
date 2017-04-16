@@ -1,0 +1,106 @@
+﻿@model Robno.Models.PoslovniPartner
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PoslovniPartner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mjesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mjesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OIB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OIB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WWW)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WWW)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ziro1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ziro1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ziro2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ziro2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Napomena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Napomena)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PoslovniPartnerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -184,6 +184,7 @@
     <Compile Include="Controllers\JedinicaMjeresController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NacinPlacanjasController.cs" />
+    <Compile Include="Controllers\PoslovniPartnersController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
     <Compile Include="Controllers\ValutasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -288,6 +289,11 @@
     <Content Include="Views\NacinPlacanjas\Details.cshtml" />
     <Content Include="Views\NacinPlacanjas\Edit.cshtml" />
     <Content Include="Views\NacinPlacanjas\Index.cshtml" />
+    <Content Include="Views\PoslovniPartners\Create.cshtml" />
+    <Content Include="Views\PoslovniPartners\Delete.cshtml" />
+    <Content Include="Views\PoslovniPartners\Details.cshtml" />
+    <Content Include="Views\PoslovniPartners\Edit.cshtml" />
+    <Content Include="Views\PoslovniPartners\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

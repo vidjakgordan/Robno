@@ -1,0 +1,93 @@
+﻿@model IEnumerable<Robno.Models.PoslovniPartner>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mjesto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OIB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WWW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ziro1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ziro2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Napomena)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mjesto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OIB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WWW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ziro1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ziro2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Napomena)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PoslovniPartnerID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PoslovniPartnerID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PoslovniPartnerID })
+        </td>
+    </tr>
+}
+
+</table>
