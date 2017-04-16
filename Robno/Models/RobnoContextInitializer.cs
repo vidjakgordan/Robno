@@ -6,7 +6,7 @@ using System.Data.Entity;
 
 namespace Robno.Models
 {
-    public class RobnoContextInitializer : DropCreateDatabaseAlways<RobnoContext>
+    public class RobnoContextInitializer : DropCreateDatabaseIfModelChanges<RobnoContext>
     {
         protected override void Seed(RobnoContext context)
         {

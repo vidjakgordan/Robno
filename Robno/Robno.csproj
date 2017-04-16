@@ -179,8 +179,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ArtikalController.cs" />
+    <Compile Include="Controllers\ArtikalKlasasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JedinicaMjeresController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NacinPlacanjasController.cs" />
+    <Compile Include="Controllers\TarifasController.cs" />
+    <Compile Include="Controllers\ValutasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -258,6 +263,31 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Tarifas\Create.cshtml" />
+    <Content Include="Views\Tarifas\Delete.cshtml" />
+    <Content Include="Views\Tarifas\Details.cshtml" />
+    <Content Include="Views\Tarifas\Edit.cshtml" />
+    <Content Include="Views\Tarifas\Index.cshtml" />
+    <Content Include="Views\JedinicaMjeres\Create.cshtml" />
+    <Content Include="Views\JedinicaMjeres\Delete.cshtml" />
+    <Content Include="Views\JedinicaMjeres\Details.cshtml" />
+    <Content Include="Views\JedinicaMjeres\Edit.cshtml" />
+    <Content Include="Views\JedinicaMjeres\Index.cshtml" />
+    <Content Include="Views\ArtikalKlasas\Create.cshtml" />
+    <Content Include="Views\ArtikalKlasas\Delete.cshtml" />
+    <Content Include="Views\ArtikalKlasas\Details.cshtml" />
+    <Content Include="Views\ArtikalKlasas\Edit.cshtml" />
+    <Content Include="Views\ArtikalKlasas\Index.cshtml" />
+    <Content Include="Views\Valutas\Create.cshtml" />
+    <Content Include="Views\Valutas\Delete.cshtml" />
+    <Content Include="Views\Valutas\Details.cshtml" />
+    <Content Include="Views\Valutas\Edit.cshtml" />
+    <Content Include="Views\Valutas\Index.cshtml" />
+    <Content Include="Views\NacinPlacanjas\Create.cshtml" />
+    <Content Include="Views\NacinPlacanjas\Delete.cshtml" />
+    <Content Include="Views\NacinPlacanjas\Details.cshtml" />
+    <Content Include="Views\NacinPlacanjas\Edit.cshtml" />
+    <Content Include="Views\NacinPlacanjas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
