@@ -19,7 +19,12 @@ namespace Robno.Models
         public double? ProdajnaCijena { get; set; }
         public double? Kolicina { get; set; }
 
+        public int JedinicaMjereID { get; set; }
+        [ForeignKey("JedinicaMjereID")]
         public virtual JedinicaMjere JedinicaMjere { get; set; }
+
+        public int ArtikalKlasaID { get; set; }
+        [ForeignKey("ArtikalKlasaID")]
         public virtual ArtikalKlasa ArtikalKlasa { get; set; }
 
         public int TarifaID { get; set; }

@@ -82,11 +82,27 @@
         </div>
 
         <div class="form-group">
-            Nas label
+            <label class="control-label col-md-2">Porezna tarifa</label>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.Artikal.TarifaID, Model.Tarife)
             </div>
         </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Jedinica Mjere</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Artikal.JedinicaMjereID, Model.JediniceMjere)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Klasa artikla</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Artikal.ArtikalKlasaID, Model.ArtikalKlase)
+            </div>
+        </div>
+
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

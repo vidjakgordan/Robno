@@ -60,7 +60,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID")] Artikal artikal)
+        public ActionResult Create([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID,JedinicaMjereID,ArtikalKlasaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID")] Artikal artikal)
+        public ActionResult Edit([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID, JedinicaMjereID, ArtikalKlasaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
