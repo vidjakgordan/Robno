@@ -16,10 +16,39 @@ namespace Robno.Controllers
     {
         private RobnoContext db = new RobnoContext();
 
-        // GET api/Artikal
-        public IQueryable<Artikal> GetArtikals()
+        public class ArtikalDB2V
         {
-            return db.Artikals;
+            public int Id { get; private set; }
+            public string Naziv { get; private set; }
+            public string Barcode { get; private set; }
+
+            public ArtikalDB2V(int id, string naziv, string barcode)
+            {
+                Id = id;
+                Naziv = naziv;
+                Barcode = barcode;
+            }
+        }
+
+        public abstract class Mapper
+        {
+            public static ArtikalDB2V Map(Artikal artikal)
+            {
+                return new ArtikalDB2V(
+                    id: artikal.ArtikalID,
+                    naziv: artikal.Naziv,
+                    barcode: artikal.BarCode
+                    );
+            }
+        }
+        // GET api/Artikal
+        public IQueryable<ArtikalDB2V> GetArtikals()
+        {
+            var x = 
+                db.Artikals
+                .Select(Mapper.Map)
+                .AsQueryable();
+            return x;
         }
 
         // GET api/Artikal/5
