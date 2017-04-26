@@ -48,7 +48,7 @@ namespace Robno.Controllers
             return View(articals);
         }
 
-        // GET: /Artikals/Create
+        // GET: /Artikals/Create  //ovo radi
         public ActionResult Create()
         {
             var model = new ArtikalViewModel();
@@ -60,7 +60,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina")] Artikal artikal)
+        public ActionResult Create([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,9 @@ namespace Robno.Controllers
             {
                 return HttpNotFound();
             }
-            return View(artikal);
+
+            var model = new ArtikalViewModel() { Artikal = artikal };
+            return View(model);
         }
 
         // POST: /Artikals/Edit/5
@@ -92,7 +94,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina")] Artikal artikal)
+        public ActionResult Edit([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
