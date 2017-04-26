@@ -1,0 +1,104 @@
+﻿@model Robno.Models.ArtikalViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Artikal</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Artikal.Naziv, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Artikal.Naziv)
+                @Html.ValidationMessageFor(model => model.Artikal.Naziv)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Artikal.Opis, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Artikal.Opis)
+                @Html.ValidationMessageFor(model => model.Artikal.Opis)
+            </div>
+        </div>
+        @*
+        <div class="form-group">
+            @Html.LabelFor(model => model.BarCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BarCode)
+                @Html.ValidationMessageFor(model => model.BarCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DodatnaSifra, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DodatnaSifra)
+                @Html.ValidationMessageFor(model => model.DodatnaSifra)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tezina, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tezina)
+                @Html.ValidationMessageFor(model => model.Tezina)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NabavnaCijena, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NabavnaCijena)
+                @Html.ValidationMessageFor(model => model.NabavnaCijena)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProdajnaCijena, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProdajnaCijena)
+                @Html.ValidationMessageFor(model => model.ProdajnaCijena)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Kolicina, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Kolicina)
+                @Html.ValidationMessageFor(model => model.Kolicina)
+            </div>
+        </div>
+            *@
+        <div class="form-group">
+            Nas label
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Artikal.TarifaID, Model.Tarife)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

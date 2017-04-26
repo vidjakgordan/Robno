@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,6 +21,9 @@ namespace Robno.Models
 
         public virtual JedinicaMjere JedinicaMjere { get; set; }
         public virtual ArtikalKlasa ArtikalKlasa { get; set; }
+
+        public int TarifaID { get; set; }
+        [ForeignKey("TarifaID")]
         public virtual Tarifa Tarifa { get; set; }
 
         public virtual ICollection<StavkaPrimke> StavkaPrimkes { get; set; }

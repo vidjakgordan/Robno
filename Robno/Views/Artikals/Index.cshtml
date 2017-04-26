@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Robno.Models.Artikal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.BarCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DodatnaSifra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tezina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NabavnaCijena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdajnaCijena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kolicina)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarifa.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JedinicaMjere.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArtikalKlasa.Naziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BarCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DodatnaSifra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tezina)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NabavnaCijena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdajnaCijena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kolicina)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.Tarifa.Opis)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.JedinicaMjere.Naziv)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.ArtikalKlasa.Naziv)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ArtikalID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ArtikalID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ArtikalID })
+        </td>
+    </tr>
+}
+
+</table>
