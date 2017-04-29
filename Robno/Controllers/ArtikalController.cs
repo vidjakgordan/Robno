@@ -21,12 +21,18 @@ namespace Robno.Controllers
             public int Id { get; private set; }
             public string Naziv { get; private set; }
             public string Barcode { get; private set; }
+            public double? ProdajnaCijena { get; private set; }
+            public double? Kolicina { get; private set; }
+            public int TarifaID { get; set; }
 
-            public ArtikalDB2V(int id, string naziv, string barcode)
+            public ArtikalDB2V(int id, string naziv, string barcode, double? prodajnacijena, double? kolicina, int tarifaid)
             {
                 Id = id;
                 Naziv = naziv;
                 Barcode = barcode;
+                ProdajnaCijena = prodajnacijena;
+                Kolicina = kolicina;
+                TarifaID = tarifaid;
             }
         }
 
@@ -37,8 +43,11 @@ namespace Robno.Controllers
                 return new ArtikalDB2V(
                     id: artikal.ArtikalID,
                     naziv: artikal.Naziv,
-                    barcode: artikal.BarCode
-                    );
+                    barcode: artikal.BarCode,
+                    prodajnacijena: artikal.ProdajnaCijena,
+                    kolicina: artikal.Kolicina,
+                    tarifaid: artikal.Tarifa.TarifaID
+                );
             }
         }
         // GET api/Artikal

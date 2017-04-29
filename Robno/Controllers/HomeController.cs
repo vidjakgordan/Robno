@@ -26,5 +26,14 @@ namespace Robno.Controllers
 
             return View();
         }
+
+        //dodano
+        public ActionResult Racun()
+        {
+            string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "Racun", });
+            ViewBag.ApiUrl = new Uri(Request.Url, apiUri).AbsoluteUri.ToString();
+
+            return View();
+        }
     }
 }

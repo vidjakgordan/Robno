@@ -1,0 +1,150 @@
+﻿@model Robno.Models.Artikal
+
+@{
+    ViewBag.Title = "Racun";
+}
+
+<h2>Racun</h2>
+
+    @section Scripts {
+        <script type="text/javascript" src="@Url.Content("~/Scripts/knockout-3.4.2.js")"></script>
+        <script type="text/javascript">
+
+        function formatirajValutu(value) {
+                return value.toFixed(2) + "kn";
+        }
+
+        // DOHVACANJE SA API-ja sve podatke o Artiklu
+        var my_json;
+        $.getJSON("../api/Artikal", function (json) {
+            my_json = json;
+        });
+
+        
+        $(window).load(function () {
+            //kao proizvod
+            var CartLine = function () {
+                var self = this;
+                self.artikal = ko.observable();
+                self.kolicina = ko.observable();
+                self.popust = ko.observable(0);
+
+                self.subtotal = ko.pureComputed(function () {
+                    return self.artikal() ? self.artikal().ProdajnaCijena * (1 - 0.01 * self.popust()) * parseInt("0" + self.kolicina(), 10) : 0;
+                });
+            };
+
+            
+            //upravljanje ukupnom "kosaricom"
+            var Cart = function () {
+                var self = this;
+                self.artikli = ko.observableArray([new CartLine()]);
+
+                self.grandTotal = ko.pureComputed(function () {
+                    var total = 0;
+                    $.each(self.artikli(), function () { total += this.subtotal() })
+                    return total;
+                });
+
+                //dodavanje artikla - dodavanje "retka"
+                self.addLine = function () {
+                    self.artikli.push(new CartLine());
+                }
+
+                //uklanjanje artikla - brisanje "retka"
+                self.removeLine = function (artikal) {
+                    self.artikli.remove(artikal);
+                }
+
+                //fja za spremanje svega
+                self.save = function () {
+                    var dataToSave = $.map(self.artikli(), function (artikal) {
+                        return artikal.artikal() && artikal.kolicina() ? {
+                            productId: artikal.artikal().Id,
+                            productPopust: artikal.popust(),
+                            productProdajnaCijena : artikal.artikal().ProdajnaCijena,
+                            productKolicina: artikal.kolicina(),
+                            productTarifa: artikal.artikal().TarifaID
+                        } : undefined
+                    });
+
+                   /* //ratina pomoc
+                    $.ajax({
+                        type: 'post',
+                        url: '../api/Orders',
+                        data: JSON.stringify(dataToSave),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            //callback
+                        }
+                    });
+                    */
+                    alert("Na server slat: " + JSON.stringify(dataToSave));
+
+                }
+
+            }
+
+
+            ko.applyBindings(new Cart());
+
+    });
+
+
+
+
+        </script>
+    }
+
+
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th width="10%">ARTIKAL_ID</th>
+                    <th width="20%">ARTIKAL</th>
+                    <th width="15%">PRODAJNA CIJENA</th>
+                    <th width="10%">KOLICINA</th>
+                    <th width="10%">POPUST</th>
+                    <th width="10%">SUBTOTAL</th>
+                </tr>
+            </thead>
+
+            <tbody data-bind="foreach:artikli">
+                <tr>
+                    <td data-bind='with:artikal'>
+                        <span data-bind='text: Id'></span>
+                    </td>
+                    <td>
+                        <select data-bind='options: my_json, optionsText:"Naziv", value: artikal'></select>
+                    </td>
+                    <td class='cijena' data-bind='with:artikal'>
+                        <span data-bind='text: ProdajnaCijena'></span>
+                    </td>
+                    <td>
+                        <input data-bind='value: kolicina' />
+                    </td>
+                    <td>
+                        <input data-bind='value: popust' />
+                    </td>
+                    <td>
+                        <span data-bind='text: formatirajValutu(subtotal()), value: subtotal'></span>
+                    </td>
+                    <td>
+                        <a href='#' data-bind='click: $parent.removeLine'>Ukloni</a>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+  
+
+    <h3 class='grandTotal'>
+    Total: <span data-bind='text: formatirajValutu(grandTotal())'> </span>
+    </h3>
+    
+    
+    <button data-bind='click: $root.addLine'>DODAJ ARTIKAL</button> <br/><br/>
+    <button data-bind='click: $root.save'>POSALJI NARUDZBU</button>
