@@ -1,0 +1,119 @@
+﻿@model Robno.Models.RacunStavkeVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Racun</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.DatumIzdavanja)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.DatumIzdavanja)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.Napomena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.Napomena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.ZKI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.ZKI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.JIR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.JIR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.UkupniIznos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.UkupniIznos)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.Racun.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.Status)
+        </dd>
+
+        <dt>
+            Nacin Placanja
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.NacinPlacanja.Naziv)
+        </dd>
+
+        <dt>
+            Poslovni Partner
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Racun.PoslovniPartner.Naziv)
+        </dd>
+
+    </dl>
+</div>   
+<table>
+    <tr>
+        <th width="15%"> RBR </th>
+        <th width="35%"> ARTIKAL </th>
+        <th width="15%"> KOLICINA </th>
+        <th width="20%"> PRODAJNA CIJENA   </th>
+        <th width="15%"> POPUST </th>
+    </tr>
+    @foreach (var item in Model.Stavke)
+    {
+        <tr>
+
+            <td>@Html.DisplayFor(modelItem => item.RedniBrojStavke)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.Artikal.Naziv)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.Kolicina)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.ProdajnaCijena)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.Popust)</td>
+
+        </tr>
+            
+
+
+    }
+
+
+</table>
+
+
+
+
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Racun.RacunID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
