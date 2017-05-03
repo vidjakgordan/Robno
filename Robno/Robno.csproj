@@ -186,6 +186,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NacinPlacanjasController.cs" />
     <Compile Include="Controllers\PoslovniPartnersController.cs" />
+    <Compile Include="Controllers\PrimkasController.cs" />
     <Compile Include="Controllers\RacunsController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
     <Compile Include="Controllers\ValutasController.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Models\JedinicaMjere.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PoslovniPartner.cs" />
+    <Compile Include="Models\PrimkaStavkeVM.cs" />
     <Compile Include="Models\RacunStavkeVM.cs" />
     <Compile Include="Models\RobnoContext.cs" />
     <Compile Include="Models\RobnoContextInitializer.cs" />
@@ -311,6 +313,11 @@
     <Content Include="Views\Racuns\Details.cshtml" />
     <Content Include="Views\Racuns\Edit.cshtml" />
     <Content Include="Views\Racuns\Index.cshtml" />
+    <Content Include="Views\Primkas\Create.cshtml" />
+    <Content Include="Views\Primkas\Delete.cshtml" />
+    <Content Include="Views\Primkas\Details.cshtml" />
+    <Content Include="Views\Primkas\Edit.cshtml" />
+    <Content Include="Views\Primkas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
