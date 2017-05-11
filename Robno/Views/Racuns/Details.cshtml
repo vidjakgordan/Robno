@@ -1,4 +1,4 @@
-﻿@model Robno.Models.RacunStavkeVM
+﻿@model Robno.Models.Racun
 
 @{
     ViewBag.Title = "Details";
@@ -11,58 +11,58 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.RacunID)
+            @Html.DisplayNameFor(model => model.RacunID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.RacunID)
+            @Html.DisplayFor(model => model.RacunID)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.DatumIzdavanja)
+            @Html.DisplayNameFor(model => model.DatumIzdavanja)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.DatumIzdavanja)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Racun.Napomena)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Racun.Napomena)
+            @Html.DisplayFor(model => model.DatumIzdavanja)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.ZKI)
+            @Html.DisplayNameFor(model => model.Napomena)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.ZKI)
+            @Html.DisplayFor(model => model.Napomena)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.JIR)
+            @Html.DisplayNameFor(model => model.ZKI)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.JIR)
+            @Html.DisplayFor(model => model.ZKI)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.UkupniIznos)
+            @Html.DisplayNameFor(model => model.JIR)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.UkupniIznos)
+            @Html.DisplayFor(model => model.JIR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UkupniIznos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UkupniIznos)
         </dd>
         
         <dt>
-            @Html.DisplayNameFor(model => model.Racun.Status)
+            @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.Status)
+            @Html.DisplayFor(model => model.Status)
         </dd>
 
         <dt>
@@ -70,7 +70,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.NacinPlacanja.Naziv)
+            @Html.DisplayFor(model => model.NacinPlacanja.Naziv)
         </dd>
 
         <dt>
@@ -78,7 +78,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Racun.PoslovniPartner.Naziv)
+            @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
         </dd>
 
     </dl>
@@ -91,7 +91,7 @@
         <th width="20%"> PRODAJNA CIJENA   </th>
         <th width="15%"> POPUST </th>
     </tr>
-    @foreach (var item in Model.Stavke)
+    @foreach (var item in Model.StavkaRacunas)
     {
         <tr>
 
@@ -121,6 +121,6 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Racun.RacunID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RacunID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

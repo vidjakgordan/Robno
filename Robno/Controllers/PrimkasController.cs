@@ -27,19 +27,13 @@ namespace Robno.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Primka primka = db.Primkas.Find(id);
-            Primka primka = db.Primkas.Include("PoslovniPartner").Include("Valuta").SingleOrDefault(x => x.PrimkaID == id);
-            IEnumerable<StavkaPrimke> stavke = db.StavkaPrimkes.Include("Artikal").Where(p => p.Primka.PrimkaID == id);
-
-            PrimkaStavkeVM vm = new PrimkaStavkeVM();
-            vm.Primka = primka;
-            vm.Stavke = stavke;
-
+            Primka primka = db.Primkas.Find(id);
+           
             if (primka == null)
             {
                 return HttpNotFound();
             }
-            return View(vm);
+            return View(primka);
         }
 
         // GET: Primkas/Create

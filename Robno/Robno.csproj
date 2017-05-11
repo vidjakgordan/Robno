@@ -201,8 +201,6 @@
     <Compile Include="Models\JedinicaMjere.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PoslovniPartner.cs" />
-    <Compile Include="Models\PrimkaStavkeVM.cs" />
-    <Compile Include="Models\RacunStavkeVM.cs" />
     <Compile Include="Models\RobnoContext.cs" />
     <Compile Include="Models\RobnoContextInitializer.cs" />
     <Compile Include="Models\StavkaPrimke.cs" />

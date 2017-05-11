@@ -15,9 +15,36 @@ namespace Robno.Controllers
         private RobnoContext db = new RobnoContext();
 
         // GET: PoslovniPartners
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.PoslovniPartners.ToList());
+            //return View(db.PoslovniPartners.ToList());
+
+            ViewBag.NazivSortParm = String.IsNullOrEmpty(sortOrder) ? "naziv_desc" : "";
+            ViewBag.MjestoSortParm = sortOrder == "Mjesto" ? "mjesto_desc" : "Mjesto";
+
+            var poslovnipartneri = from s in db.PoslovniPartners select s;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                poslovnipartneri = poslovnipartneri.Where(s => s.Naziv.Contains(searchString));
+            }
+            
+            switch(sortOrder)
+            {
+                case "naziv_desc":
+                    poslovnipartneri = poslovnipartneri.OrderByDescending(s => s.Naziv);
+                    break;
+                case "Mjesto":
+                    poslovnipartneri = poslovnipartneri.OrderBy(s => s.Mjesto);
+                    break;
+                case "mjesto_desc":
+                    poslovnipartneri = poslovnipartneri.OrderByDescending(s => s.Mjesto);
+                    break;
+                default:
+                    poslovnipartneri = poslovnipartneri.OrderBy(s => s.PoslovniPartnerID);
+                    break;
+            }
+            return View(poslovnipartneri.ToList());
         }
 
         // GET: PoslovniPartners/Details/5

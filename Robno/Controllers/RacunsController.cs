@@ -28,20 +28,14 @@ namespace Robno.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //Racun racun = db.Racuns.Find(id);
-            Racun racun = db.Racuns.Include("NacinPlacanja").Include("PoslovniPartner").SingleOrDefault(x => x.RacunID == id);
-                        
-            IEnumerable<StavkaRacuna> stavke = db.StavkaRacunas.Include("Artikal").Where(x => x.Racun.RacunID == id);
-
-            RacunStavkeVM vm = new RacunStavkeVM();
-            vm.Racun = racun;
-            vm.Stavke = stavke;
+            Racun racun = db.Racuns.Find(id);
+           
            
             if (racun == null)
             {
                 return HttpNotFound();
             }
-            return View(vm);
+            return View(racun);
         }
 
         // GET: Racuns/Create

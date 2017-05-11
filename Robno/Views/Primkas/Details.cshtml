@@ -1,4 +1,4 @@
-﻿@model Robno.Models.PrimkaStavkeVM
+﻿@model Robno.Models.Primka
 
 @{
     ViewBag.Title = "Details";
@@ -11,73 +11,73 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.PrimkaID)
+            @Html.DisplayNameFor(model => model.PrimkaID)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.PrimkaID)
+            @Html.DisplayFor(model => model.PrimkaID)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.DatumIzdavanja)
+            @Html.DisplayNameFor(model => model.DatumIzdavanja)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.DatumIzdavanja)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Primka.DatumUnosa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Primka.DatumUnosa)
+            @Html.DisplayFor(model => model.DatumIzdavanja)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.ValutaTecaj)
+            @Html.DisplayNameFor(model => model.DatumUnosa)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.ValutaTecaj)
+            @Html.DisplayFor(model => model.DatumUnosa)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.Valuta.Naziv)
+            @Html.DisplayNameFor(model => model.ValutaTecaj)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.Valuta.Naziv)
+            @Html.DisplayFor(model => model.ValutaTecaj)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.UkupniIznos)
+            @Html.DisplayNameFor(model => model.Valuta.Naziv)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.UkupniIznos)
+            @Html.DisplayFor(model => model.Valuta.Naziv)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.Napomena)
+            @Html.DisplayNameFor(model => model.UkupniIznos)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.Napomena)
+            @Html.DisplayFor(model => model.UkupniIznos)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.Status)
+            @Html.DisplayNameFor(model => model.Napomena)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.Status)
+            @Html.DisplayFor(model => model.Napomena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Primka.PoslovniPartner.Naziv)
+            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Primka.PoslovniPartner.Naziv)
+            @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
         </dd>
 
 
@@ -92,7 +92,7 @@
         <th width="20%"> NABAVNA CIJENA   </th>
         <th width="15%"> RABAT </th>
     </tr>
-    @foreach (var item in Model.Stavke)
+    @foreach (var item in Model.StavkaPrimkes)
     {
         <tr>
 
@@ -111,6 +111,6 @@
 </table>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Primka.PrimkaID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PrimkaID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

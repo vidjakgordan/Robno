@@ -15,14 +15,26 @@ namespace Robno.Controllers
         private RobnoContext db = new RobnoContext();
 
         // GET: /Artikals/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var articals = db.Artikals
-                .Include("Tarifa")
-                .Include("JedinicaMjere")
-                .Include("ArtikalKlasa");
+            ViewBag.OrderParm = String.IsNullOrEmpty(sortOrder) ? "naziv_asc" : "";
+            var artikals = from s in db.Artikals select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                artikals = artikals.Where(s => s.Naziv.Contains(searchString));
+            }
 
-            return View(articals.ToList());
+            switch (sortOrder)
+            {
+                case "naziv_asc":
+                    artikals = artikals.OrderBy(s => s.Naziv);
+                    break;
+                default:
+                    artikals = artikals.OrderBy(s => s.ArtikalID);
+                    break;
+            }
+
+            return View(artikals.ToList());
         }
 
         // GET: /Artikals/Details/5
