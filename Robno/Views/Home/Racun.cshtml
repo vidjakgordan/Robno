@@ -68,18 +68,21 @@
                         } : undefined
                     });
 
-                   /* //ratina pomoc
+                   
                     $.ajax({
                         type: 'post',
-                        url: '../api/Orders',
+                        url: '/api/Artikal',
                         data: JSON.stringify(dataToSave),
                         contentType: 'application/json; charset=utf-8',
                         success: function (data) {
-                            //callback
+                            alert("Uspjeh!");
+                        },
+                        error: function (data) {
+                            alert("Neuspjeh :(");
                         }
                     });
-                    */
-                    alert("Na server slat: " + JSON.stringify(dataToSave));
+                    
+                   // alert("Na server slat: " + JSON.stringify(dataToSave));
 
                 }
 

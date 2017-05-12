@@ -36,6 +36,32 @@ namespace Robno.Controllers
             }
         }
 
+        public class ArtikalDTO
+        {
+            public int ProductId { get; set; }
+            public int ProductPopust { get; set; }
+            public int ProductProdajnaCijena { get; set; }
+            public string ProductKolicina { get; set; }
+            public int ProductTarifa { get; set; }
+         }
+
+       /* public class ArtikalDTO2DB
+        {
+            public double ProductPopust { get; set; }
+            public double ProductProdajnaCijena { get; set; }
+            public double ProductKolicina { get; set; }
+            public double ProductTarifa { get; set; }
+
+            public ArtikalDTO2DB(ArtikalDTO artikal)
+            {
+                ProductId = artikal.ProductId;
+                ProductPopust = artikal.ProductPopust;
+                ProductProdajnaCijena = artikal.ProductProdajnaCijena;
+                ProductKolicina = Convert.ToDouble(artikal.ProductKolicina);
+                ProductTarifa = artikal.ProductTarifa;
+            }
+        }*/
+
         public abstract class Mapper
         {
             public static ArtikalDB2V Map(Artikal artikal)
@@ -109,17 +135,32 @@ namespace Robno.Controllers
 
         // POST api/Artikal
         [ResponseType(typeof(Artikal))]
-        public IHttpActionResult PostArtikal(Artikal artikal)
+        public IHttpActionResult PostArtikal(IEnumerable<ArtikalDTO> stavke)
         {
-            if (!ModelState.IsValid)
+            var racun = db.Racuns.Create();
+            racun.DatumIzdavanja = DateTime.Now;
+
+            int i = 1;
+            foreach(var stavka in stavke)
             {
-                return BadRequest(ModelState);
+                var novaStavka = db.StavkaRacunas.Create();
+
+                novaStavka.RedniBrojStavke = i;
+                i++;
+                novaStavka.Racun = racun;
+                novaStavka.Artikal = db.Artikals.Find(stavka.ProductId);
+
+                novaStavka.Popust = stavka.ProductPopust;
+                novaStavka.Kolicina = Convert.ToDouble(stavka.ProductKolicina);
+                novaStavka.ProdajnaCijena = stavka.ProductProdajnaCijena;
+                novaStavka.NabavnaCijena = db.Artikals.Find(stavka.ProductId).NabavnaCijena;
+                db.StavkaRacunas.Add(novaStavka);
             }
 
-            db.Artikals.Add(artikal);
+            db.Racuns.Add(racun);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = artikal.ArtikalID }, artikal);
+            return Ok();
         }
 
         // DELETE api/Artikal/5
