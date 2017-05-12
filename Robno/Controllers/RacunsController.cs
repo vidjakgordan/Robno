@@ -17,7 +17,7 @@ namespace Robno.Controllers
         // GET: Racuns
         public ActionResult Index()
         {
-            return View(db.Racuns.ToList());
+            return View(db.Racuns.OrderByDescending(s => s.RacunID).ToList());
         }
 
         // GET: Racuns/Details/5

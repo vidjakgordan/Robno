@@ -27,7 +27,7 @@ namespace Robno.Controllers
             return View();
         }
 
-        //dodano
+        //dodano za racun
         public ActionResult Racun()
         {
             string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "Racun", });
@@ -35,5 +35,15 @@ namespace Robno.Controllers
 
             return View();
         }
+
+        //dodano za primku
+        public ActionResult Primka()
+        {
+            string apiUri = Url.HttpRouteUrl("DefaultApi", new { controller = "Primka", });
+            ViewBag.ApiUrl = new Uri(Request.Url, apiUri).AbsoluteUri.ToString();
+
+            return View();
+        }
+
     }
 }

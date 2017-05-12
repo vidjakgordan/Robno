@@ -71,11 +71,12 @@
                    
                     $.ajax({
                         type: 'post',
-                        url: '/api/Artikal',
+                        url: '/Racun',
                         data: JSON.stringify(dataToSave),
                         contentType: 'application/json; charset=utf-8',
                         success: function (data) {
                             alert("Uspjeh!");
+                            window.location.replace(/Racuns/); // redirect na glavnu stranicu s prikazom svih racuna.
                         },
                         error: function (data) {
                             alert("Neuspjeh :(");

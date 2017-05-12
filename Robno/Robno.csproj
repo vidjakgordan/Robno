@@ -216,6 +216,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\theme.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -316,6 +317,7 @@
     <Content Include="Views\Primkas\Details.cshtml" />
     <Content Include="Views\Primkas\Edit.cshtml" />
     <Content Include="Views\Primkas\Index.cshtml" />
+    <Content Include="Views\Home\Primka.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

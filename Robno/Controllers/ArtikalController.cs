@@ -36,7 +36,7 @@ namespace Robno.Controllers
             }
         }
 
-        public class ArtikalDTO
+        public class ArtikalDTORacun
         {
             public int ProductId { get; set; }
             public int ProductPopust { get; set; }
@@ -45,22 +45,13 @@ namespace Robno.Controllers
             public int ProductTarifa { get; set; }
          }
 
-       /* public class ArtikalDTO2DB
+        public class ArtikalDTOPrimka
         {
-            public double ProductPopust { get; set; }
-            public double ProductProdajnaCijena { get; set; }
-            public double ProductKolicina { get; set; }
-            public double ProductTarifa { get; set; }
-
-            public ArtikalDTO2DB(ArtikalDTO artikal)
-            {
-                ProductId = artikal.ProductId;
-                ProductPopust = artikal.ProductPopust;
-                ProductProdajnaCijena = artikal.ProductProdajnaCijena;
-                ProductKolicina = Convert.ToDouble(artikal.ProductKolicina);
-                ProductTarifa = artikal.ProductTarifa;
-            }
-        }*/
+            public int ProductId { get; set; }
+            public int ProductRabat { get; set; }
+            public int ProductNabavnaCijena { get; set; }
+            public string ProductKolicina { get; set; }
+        }
 
         public abstract class Mapper
         {
@@ -134,30 +125,88 @@ namespace Robno.Controllers
         }
 
         // POST api/Artikal
-        [ResponseType(typeof(Artikal))]
-        public IHttpActionResult PostArtikal(IEnumerable<ArtikalDTO> stavke)
+        //[ResponseType(typeof(Artikal))]
+        [Route("Racun")]
+        public IHttpActionResult Racun(IEnumerable<ArtikalDTORacun> stavke) // za Racun
         {
+            if (stavke.Count() == 0) return NotFound(); // ako su stavke prazne - ne moze bit racun bez stavki
+
             var racun = db.Racuns.Create();
             racun.DatumIzdavanja = DateTime.Now;
 
             int i = 1;
             foreach(var stavka in stavke)
             {
+                //kreiranje nove stavke racune
                 var novaStavka = db.StavkaRacunas.Create();
 
                 novaStavka.RedniBrojStavke = i;
                 i++;
                 novaStavka.Racun = racun;
                 novaStavka.Artikal = db.Artikals.Find(stavka.ProductId);
+                novaStavka.Tarifa = db.Tarifas.Find(stavka.ProductTarifa);
 
                 novaStavka.Popust = stavka.ProductPopust;
                 novaStavka.Kolicina = Convert.ToDouble(stavka.ProductKolicina);
                 novaStavka.ProdajnaCijena = stavka.ProductProdajnaCijena;
                 novaStavka.NabavnaCijena = db.Artikals.Find(stavka.ProductId).NabavnaCijena;
                 db.StavkaRacunas.Add(novaStavka);
+
+                //skidanje sa stanja skladista
+                db.Artikals.Find(stavka.ProductId).Kolicina = db.Artikals.Find(stavka.ProductId).Kolicina - novaStavka.Kolicina;
             }
 
             db.Racuns.Add(racun);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        // POST api/Artikal
+        //[ResponseType(typeof(Artikal))]
+        [HttpPost]
+        [Route("Primka")]
+        public IHttpActionResult Primka(IEnumerable<ArtikalDTOPrimka> stavke) // za Primku
+        {
+            if (stavke.Count() == 0) return NotFound(); // ako su stavke prazne - ne moze bit primka bez stavki
+
+            var primka = db.Primkas.Create();
+            primka.DatumUnosa = DateTime.Now;
+            double ukupniznos = 0;
+
+            int i = 1;
+            foreach (var stavka in stavke)
+            {
+                //kreiranje nove stavke primke
+                var novaStavka = db.StavkaPrimkes.Create();
+
+                novaStavka.RedniBrojStavke = i;
+                i++;
+                novaStavka.Primka = primka;
+                novaStavka.Artikal = db.Artikals.Find(stavka.ProductId);
+
+                novaStavka.Rabat = stavka.ProductRabat;
+                novaStavka.Kolicina = Convert.ToDouble(stavka.ProductKolicina);
+                novaStavka.NabavnaCijena = stavka.ProductNabavnaCijena;
+                db.StavkaPrimkes.Add(novaStavka);
+
+                ukupniznos = ukupniznos + (double) novaStavka.NabavnaCijena * (double)novaStavka.Kolicina * (1 - (double)novaStavka.Rabat/100);
+
+                //stavljanje sa stanja skladista
+                
+                double trenutnakolicina = (double)db.Artikals.Find(stavka.ProductId).Kolicina;
+                double trenutnanabavnacijena = (double)db.Artikals.Find(stavka.ProductId).NabavnaCijena;
+
+                db.Artikals.Find(stavka.ProductId).NabavnaCijena = 
+                    (trenutnakolicina * trenutnanabavnacijena + novaStavka.Kolicina * novaStavka.NabavnaCijena) / 
+                    (trenutnakolicina + novaStavka.Kolicina);
+
+                db.Artikals.Find(stavka.ProductId).Kolicina = db.Artikals.Find(stavka.ProductId).Kolicina + novaStavka.Kolicina;
+            }
+
+            primka.UkupniIznos = ukupniznos;
+
+            db.Primkas.Add(primka);
             db.SaveChanges();
 
             return Ok();
