@@ -17,9 +17,17 @@
         @Html.HiddenFor(model => model.RacunID)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.RacunID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.RacunID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DatumIzdavanja, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.DatumIzdavanja, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DatumIzdavanja, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.DatumIzdavanja, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DatumIzdavanja, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -51,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UkupniIznos, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UkupniIznos, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DisplayFor(model => model.UkupniIznos, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UkupniIznos, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -61,6 +69,22 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PoslovniPartnerID, "PoslovniPartnerID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PoslovniPartnerID", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PoslovniPartnerID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NacinPlacanjaID, "NacinPlacanjaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("NacinPlacanjaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NacinPlacanjaID, "", new { @class = "text-danger" })
             </div>
         </div>
 

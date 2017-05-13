@@ -18,6 +18,22 @@
             @Html.DisplayFor(model => model.PrimkaID)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.PoslovniPartner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valuta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valuta.Naziv)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.DatumIzdavanja)
         </dt>
 
@@ -39,14 +55,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.ValutaTecaj)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Valuta.Naziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Valuta.Naziv)
         </dd>
 
         <dt>
@@ -72,14 +80,6 @@
         <dd>
             @Html.DisplayFor(model => model.Status)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
-        </dd>
-
 
     </dl>
 </div>

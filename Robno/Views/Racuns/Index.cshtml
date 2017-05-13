@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.RacunID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.NacinPlacanja.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DatumIzdavanja)
         </th>
         <th>
@@ -32,6 +38,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
+
         <th></th>
     </tr>
 
@@ -39,6 +46,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.RacunID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NacinPlacanja.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoslovniPartner.Naziv)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DatumIzdavanja)

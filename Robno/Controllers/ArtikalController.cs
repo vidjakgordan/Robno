@@ -133,6 +133,7 @@ namespace Robno.Controllers
 
             var racun = db.Racuns.Create();
             racun.DatumIzdavanja = DateTime.Now;
+            double ukupniiznos = 0;
 
             int i = 1;
             foreach(var stavka in stavke)
@@ -152,9 +153,14 @@ namespace Robno.Controllers
                 novaStavka.NabavnaCijena = db.Artikals.Find(stavka.ProductId).NabavnaCijena;
                 db.StavkaRacunas.Add(novaStavka);
 
+                ukupniiznos = ukupniiznos + (double)novaStavka.Kolicina * (double)novaStavka.ProdajnaCijena * (1 - (double)novaStavka.Popust / 100);
+
                 //skidanje sa stanja skladista
                 db.Artikals.Find(stavka.ProductId).Kolicina = db.Artikals.Find(stavka.ProductId).Kolicina - novaStavka.Kolicina;
             }
+
+            racun.UkupniIznos = ukupniiznos;
+            racun.NacinPlacanja = db.NacinPlacanjas.Where(x => x.Kratica == "G").FirstOrDefault();
 
             db.Racuns.Add(racun);
             db.SaveChanges();
@@ -172,7 +178,7 @@ namespace Robno.Controllers
 
             var primka = db.Primkas.Create();
             primka.DatumUnosa = DateTime.Now;
-            double ukupniznos = 0;
+            double ukupniiznos = 0;
 
             int i = 1;
             foreach (var stavka in stavke)
@@ -190,7 +196,7 @@ namespace Robno.Controllers
                 novaStavka.NabavnaCijena = stavka.ProductNabavnaCijena;
                 db.StavkaPrimkes.Add(novaStavka);
 
-                ukupniznos = ukupniznos + (double) novaStavka.NabavnaCijena * (double)novaStavka.Kolicina * (1 - (double)novaStavka.Rabat/100);
+                ukupniiznos = ukupniiznos + (double) novaStavka.NabavnaCijena * (double)novaStavka.Kolicina * (1 - (double)novaStavka.Rabat/100);
 
                 //stavljanje sa stanja skladista
                 
@@ -204,7 +210,7 @@ namespace Robno.Controllers
                 db.Artikals.Find(stavka.ProductId).Kolicina = db.Artikals.Find(stavka.ProductId).Kolicina + novaStavka.Kolicina;
             }
 
-            primka.UkupniIznos = ukupniznos;
+            primka.UkupniIznos = ukupniiznos;
 
             db.Primkas.Add(primka);
             db.SaveChanges();

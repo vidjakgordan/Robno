@@ -17,7 +17,8 @@ namespace Robno.Controllers
         // GET: Primkas
         public ActionResult Index()
         {
-            return View(db.Primkas.ToList());
+            var primkas = db.Primkas.Include(p => p.PoslovniPartner).Include(p => p.Valuta);
+            return View(primkas.ToList());
         }
 
         // GET: Primkas/Details/5
@@ -28,7 +29,6 @@ namespace Robno.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Primka primka = db.Primkas.Find(id);
-           
             if (primka == null)
             {
                 return HttpNotFound();
@@ -39,6 +39,8 @@ namespace Robno.Controllers
         // GET: Primkas/Create
         public ActionResult Create()
         {
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv");
+            ViewBag.ValutaID = new SelectList(db.Valutas, "ValutaID", "Naziv");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PrimkaID,DatumIzdavanja,DatumUnosa,ValutaTecaj,UkupniIznos,Napomena,Status")] Primka primka)
+        public ActionResult Create([Bind(Include = "PrimkaID,DatumIzdavanja,DatumUnosa,ValutaTecaj,UkupniIznos,Napomena,Status,PoslovniPartnerID,ValutaID")] Primka primka)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,8 @@ namespace Robno.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", primka.PoslovniPartnerID);
+            ViewBag.ValutaID = new SelectList(db.Valutas, "ValutaID", "Naziv", primka.ValutaID);
             return View(primka);
         }
 
@@ -71,6 +75,8 @@ namespace Robno.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", primka.PoslovniPartnerID);
+            ViewBag.ValutaID = new SelectList(db.Valutas, "ValutaID", "Naziv", primka.ValutaID);
             return View(primka);
         }
 
@@ -79,7 +85,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PrimkaID,DatumIzdavanja,DatumUnosa,ValutaTecaj,UkupniIznos,Napomena,Status")] Primka primka)
+        public ActionResult Edit([Bind(Include = "PrimkaID,DatumIzdavanja,DatumUnosa,ValutaTecaj,UkupniIznos,Napomena,Status,PoslovniPartnerID,ValutaID")] Primka primka)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +93,8 @@ namespace Robno.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", primka.PoslovniPartnerID);
+            ViewBag.ValutaID = new SelectList(db.Valutas, "ValutaID", "Naziv", primka.ValutaID);
             return View(primka);
         }
 

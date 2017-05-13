@@ -17,7 +17,8 @@ namespace Robno.Controllers
         // GET: Racuns
         public ActionResult Index()
         {
-            return View(db.Racuns.OrderByDescending(s => s.RacunID).ToList());
+            var racuns = db.Racuns.Include(r => r.NacinPlacanja).Include(r => r.PoslovniPartner);
+            return View(racuns.ToList());
         }
 
         // GET: Racuns/Details/5
@@ -27,10 +28,7 @@ namespace Robno.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Racun racun = db.Racuns.Find(id);
-           
-           
             if (racun == null)
             {
                 return HttpNotFound();
@@ -41,6 +39,8 @@ namespace Robno.Controllers
         // GET: Racuns/Create
         public ActionResult Create()
         {
+            ViewBag.NacinPlacanjaID = new SelectList(db.NacinPlacanjas, "NacinPlacanjaID", "Naziv");
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status")] Racun racun)
+        public ActionResult Create([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status,PoslovniPartnerID,NacinPlacanjaID")] Racun racun)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +58,8 @@ namespace Robno.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.NacinPlacanjaID = new SelectList(db.NacinPlacanjas, "NacinPlacanjaID", "Naziv", racun.NacinPlacanjaID);
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", racun.PoslovniPartnerID);
             return View(racun);
         }
 
@@ -73,6 +75,8 @@ namespace Robno.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.NacinPlacanjaID = new SelectList(db.NacinPlacanjas, "NacinPlacanjaID", "Naziv", racun.NacinPlacanjaID);
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", racun.PoslovniPartnerID);
             return View(racun);
         }
 
@@ -81,7 +85,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status")] Racun racun)
+        public ActionResult Edit([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status,PoslovniPartnerID,NacinPlacanjaID")] Racun racun)
         {
             if (ModelState.IsValid)
             {
@@ -89,6 +93,8 @@ namespace Robno.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.NacinPlacanjaID = new SelectList(db.NacinPlacanjas, "NacinPlacanjaID", "Naziv", racun.NacinPlacanjaID);
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv", racun.PoslovniPartnerID);
             return View(racun);
         }
 

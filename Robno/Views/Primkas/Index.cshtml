@@ -15,6 +15,12 @@
             @Html.DisplayNameFor(model => model.PrimkaID)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valuta.Naziv)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DatumIzdavanja)
         </th>
         <th>
@@ -39,6 +45,12 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.PrimkaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoslovniPartner.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Valuta.Naziv)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DatumIzdavanja)

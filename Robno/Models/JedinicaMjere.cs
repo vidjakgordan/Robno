@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace Robno.Models
     {
         public int JedinicaMjereID { get; set; }
 
+        [DisplayName("Jedinica mjere")]
         public string Naziv { get; set; }
         public string Kratica { get; set; }
 

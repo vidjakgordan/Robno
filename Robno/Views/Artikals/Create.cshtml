@@ -1,11 +1,10 @@
-﻿@model Robno.Models.ArtikalViewModel
+﻿@model Robno.Models.Artikal
 
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
-
 
 @using (Html.BeginForm()) 
 {
@@ -14,90 +13,92 @@
     <div class="form-horizontal">
         <h4>Artikal</h4>
         <hr />
-        @Html.ValidationSummary(true)
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.Naziv, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Naziv, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.Naziv)
-                @Html.ValidationMessageFor(model => model.Artikal.Naziv)
+                @Html.EditorFor(model => model.Naziv, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Naziv, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.Opis, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Opis, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.Opis)
-                @Html.ValidationMessageFor(model => model.Artikal.Opis)
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.BarCode, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.BarCode)
-                @Html.ValidationMessageFor(model => model.Artikal.BarCode)
+                @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.DodatnaSifra, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.BarCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.DodatnaSifra)
-                @Html.ValidationMessageFor(model => model.Artikal.DodatnaSifra)
+                @Html.EditorFor(model => model.BarCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BarCode, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.Tezina, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DodatnaSifra, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.Tezina)
-                @Html.ValidationMessageFor(model => model.Artikal.Tezina)
+                @Html.EditorFor(model => model.DodatnaSifra, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DodatnaSifra, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.NabavnaCijena, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tezina, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.NabavnaCijena)
-                @Html.ValidationMessageFor(model => model.Artikal.NabavnaCijena)
+                @Html.EditorFor(model => model.Tezina, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tezina, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.ProdajnaCijena, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.NabavnaCijena, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.ProdajnaCijena)
-                @Html.ValidationMessageFor(model => model.Artikal.ProdajnaCijena)
+                @Html.EditorFor(model => model.NabavnaCijena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NabavnaCijena, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Artikal.Kolicina, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProdajnaCijena, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Artikal.Kolicina)
-                @Html.ValidationMessageFor(model => model.Artikal.Kolicina)
-            </div>
-        </div>
-            
-        <div class="form-group">
-            <label class="control-label col-md-2">Porezna tarifa</label>
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Artikal.TarifaID, Model.Tarife)
+                @Html.EditorFor(model => model.ProdajnaCijena, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProdajnaCijena, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Jedinica Mjere</label>
+            @Html.LabelFor(model => model.Kolicina, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Artikal.JedinicaMjereID, Model.JediniceMjere)
+                @Html.EditorFor(model => model.Kolicina, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Kolicina, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Klasa artikla</label>
+            @Html.LabelFor(model => model.JedinicaMjereID, "JedinicaMjereID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Artikal.ArtikalKlasaID, Model.ArtikalKlase)
+                @Html.DropDownList("JedinicaMjereID", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.JedinicaMjereID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ArtikalKlasaID, "ArtikalKlasaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ArtikalKlasaID", null, string.Empty, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ArtikalKlasaID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TarifaID, "TarifaID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TarifaID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TarifaID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -112,7 +113,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

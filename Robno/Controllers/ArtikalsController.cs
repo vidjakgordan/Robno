@@ -14,7 +14,6 @@ namespace Robno.Controllers
     {
         private RobnoContext db = new RobnoContext();
 
-        // GET: /Artikals/
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.OrderParm = String.IsNullOrEmpty(sortOrder) ? "naziv_asc" : "";
@@ -37,7 +36,8 @@ namespace Robno.Controllers
             return View(artikals.ToList());
         }
 
-        // GET: /Artikals/Details/5
+
+        // GET: Artikals/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,30 +49,24 @@ namespace Robno.Controllers
             {
                 return HttpNotFound();
             }
-
-            var articals = db.Artikals
-                .Include("Tarifa")
-                .Include("JedinicaMjere")
-                .Include("ArtikalKlasa")
-                .ToList()
-                .SingleOrDefault(x => x.ArtikalID == id);
-
-            return View(articals);
+            return View(artikal);
         }
 
-        // GET: /Artikals/Create  //ovo radi
+        // GET: Artikals/Create
         public ActionResult Create()
         {
-            var model = new ArtikalViewModel();
-            return View(model);
+            ViewBag.ArtikalKlasaID = new SelectList(db.ArtikalKlasas, "ArtikalKlasaID", "Naziv");
+            ViewBag.JedinicaMjereID = new SelectList(db.JedinicaMjeres, "JedinicaMjereID", "Naziv");
+            ViewBag.TarifaID = new SelectList(db.Tarifas, "TarifaID", "Opis");
+            return View();
         }
 
-        // POST: /Artikals/Create
+        // POST: Artikals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID,JedinicaMjereID,ArtikalKlasaID")] Artikal artikal)
+        public ActionResult Create([Bind(Include = "ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,JedinicaMjereID,ArtikalKlasaID,TarifaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
@@ -81,10 +75,13 @@ namespace Robno.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ArtikalKlasaID = new SelectList(db.ArtikalKlasas, "ArtikalKlasaID", "Naziv", artikal.ArtikalKlasaID);
+            ViewBag.JedinicaMjereID = new SelectList(db.JedinicaMjeres, "JedinicaMjereID", "Naziv", artikal.JedinicaMjereID);
+            ViewBag.TarifaID = new SelectList(db.Tarifas, "TarifaID", "Opis", artikal.TarifaID);
             return View(artikal);
         }
 
-        // GET: /Artikals/Edit/5
+        // GET: Artikals/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -96,17 +93,18 @@ namespace Robno.Controllers
             {
                 return HttpNotFound();
             }
-
-            var model = new ArtikalViewModel() { Artikal = artikal };
-            return View(model);
+            ViewBag.ArtikalKlasaID = new SelectList(db.ArtikalKlasas, "ArtikalKlasaID", "Naziv", artikal.ArtikalKlasaID);
+            ViewBag.JedinicaMjereID = new SelectList(db.JedinicaMjeres, "JedinicaMjereID", "Naziv", artikal.JedinicaMjereID);
+            ViewBag.TarifaID = new SelectList(db.Tarifas, "TarifaID", "Opis", artikal.TarifaID);
+            return View(artikal);
         }
 
-        // POST: /Artikals/Edit/5
+        // POST: Artikals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,TarifaID, JedinicaMjereID, ArtikalKlasaID")] Artikal artikal)
+        public ActionResult Edit([Bind(Include = "ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,JedinicaMjereID,ArtikalKlasaID,TarifaID")] Artikal artikal)
         {
             if (ModelState.IsValid)
             {
@@ -114,10 +112,13 @@ namespace Robno.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ArtikalKlasaID = new SelectList(db.ArtikalKlasas, "ArtikalKlasaID", "Naziv", artikal.ArtikalKlasaID);
+            ViewBag.JedinicaMjereID = new SelectList(db.JedinicaMjeres, "JedinicaMjereID", "Naziv", artikal.JedinicaMjereID);
+            ViewBag.TarifaID = new SelectList(db.Tarifas, "TarifaID", "Opis", artikal.TarifaID);
             return View(artikal);
         }
 
-        // GET: /Artikals/Delete/5
+        // GET: Artikals/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -132,7 +133,7 @@ namespace Robno.Controllers
             return View(artikal);
         }
 
-        // POST: /Artikals/Delete/5
+        // POST: Artikals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

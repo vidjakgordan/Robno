@@ -8,8 +8,16 @@
 
 <div>
     <h4>Artikal</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ArtikalID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArtikalID)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Naziv)
         </dt>
@@ -75,24 +83,27 @@
         </dd>
 
         <dt>
-            Porezna tarifa
+            @Html.DisplayNameFor(model => model.ArtikalKlasa.Naziv)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.Tarifa.Opis)
+            @Html.DisplayFor(model => model.ArtikalKlasa.Naziv)
         </dd>
 
         <dt>
-            Jedinica mjere
+            @Html.DisplayNameFor(model => model.JedinicaMjere.Naziv)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.JedinicaMjere.Naziv)
         </dd>
 
         <dt>
-            Klasa artikla
+            @Html.DisplayNameFor(model => model.Tarifa.Opis)
         </dt>
+
         <dd>
-            @Html.DisplayFor(model => model.ArtikalKlasa.Naziv)
+            @Html.DisplayFor(model => model.Tarifa.Opis)
         </dd>
 
     </dl>

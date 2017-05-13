@@ -196,7 +196,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artikal.cs" />
     <Compile Include="Models\ArtikalKlasa.cs" />
-    <Compile Include="Models\ArtikalViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JedinicaMjere.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -301,12 +300,8 @@
     <Content Include="Views\PoslovniPartners\Details.cshtml" />
     <Content Include="Views\PoslovniPartners\Edit.cshtml" />
     <Content Include="Views\PoslovniPartners\Index.cshtml" />
-    <Content Include="Views\Artikals\Create.cshtml" />
-    <Content Include="Views\Artikals\Delete.cshtml" />
-    <Content Include="Views\Artikals\Details.cshtml" />
-    <Content Include="Views\Artikals\Edit.cshtml" />
-    <Content Include="Views\Artikals\Index.cshtml" />
     <Content Include="Views\Home\Racun.cshtml" />
+    <Content Include="Views\Home\Primka.cshtml" />
     <Content Include="Views\Racuns\Create.cshtml" />
     <Content Include="Views\Racuns\Delete.cshtml" />
     <Content Include="Views\Racuns\Details.cshtml" />
@@ -317,7 +312,11 @@
     <Content Include="Views\Primkas\Details.cshtml" />
     <Content Include="Views\Primkas\Edit.cshtml" />
     <Content Include="Views\Primkas\Index.cshtml" />
-    <Content Include="Views\Home\Primka.cshtml" />
+    <Content Include="Views\Artikals\Create.cshtml" />
+    <Content Include="Views\Artikals\Delete.cshtml" />
+    <Content Include="Views\Artikals\Details.cshtml" />
+    <Content Include="Views\Artikals\Edit.cshtml" />
+    <Content Include="Views\Artikals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

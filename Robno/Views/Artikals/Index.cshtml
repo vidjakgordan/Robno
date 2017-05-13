@@ -18,13 +18,12 @@
 }
 <table class="table">
     <tr>
+        
         <th>
-            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.OrderParm })
-        </th>
+            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.OrderParm })        </th>
         <th>
             @Html.DisplayNameFor(model => model.Opis)
         </th>
-        
         <th>
             @Html.DisplayNameFor(model => model.BarCode)
         </th>
@@ -44,13 +43,13 @@
             @Html.DisplayNameFor(model => model.Kolicina)
         </th>
         <th>
-            Porezna tarifa
+            @Html.DisplayNameFor(model => model.ArtikalKlasa.Naziv)
         </th>
         <th>
-            Jedinica mjere
+            @Html.DisplayNameFor(model => model.JedinicaMjere.Naziv)
         </th>
         <th>
-            Klasa artikla
+            @Html.DisplayNameFor(model => model.Tarifa.Opis)
         </th>
         <th></th>
     </tr>
@@ -81,15 +80,15 @@
         <td>
             @Html.DisplayFor(modelItem => item.Kolicina)
         </td>
-        <th>
-            @Html.DisplayFor(modelItem => item.Tarifa.Opis)
-        </th>
-        <th>
-            @Html.DisplayFor(modelItem => item.JedinicaMjere.Naziv)
-        </th>
-        <th>
+        <td>
             @Html.DisplayFor(modelItem => item.ArtikalKlasa.Naziv)
-        </th>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JedinicaMjere.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarifa.Opis)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ArtikalID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ArtikalID }) |
