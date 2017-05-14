@@ -26,11 +26,11 @@
             var CartLine = function () {
                 var self = this;
                 self.artikal = ko.observable();
-                self.kolicina = ko.observable();
+                self.kolicina = ko.observable(0);
                 self.popust = ko.observable(0);
 
                 self.subtotal = ko.pureComputed(function () {
-                    return self.artikal() ? self.artikal().ProdajnaCijena * (1 - 0.01 * self.popust()) * parseInt("0" + self.kolicina(), 10) : 0;
+                    return self.artikal() ? self.artikal().ProdajnaCijena * (1 - 0.01 * self.popust()) * self.kolicina()  : 0;
                 });
             };
 
@@ -123,7 +123,7 @@
                         <select data-bind='options: my_json, optionsText:"Naziv", value: artikal'></select>
                     </td>
                     <td class='cijena' data-bind='with:artikal'>
-                        <span data-bind='text: ProdajnaCijena'></span>
+                        <span data-bind='text: formatirajValutu(ProdajnaCijena), value: ProdajnaCijena'></span>
                     </td>
                     <td>
                         <input data-bind='value: kolicina' />

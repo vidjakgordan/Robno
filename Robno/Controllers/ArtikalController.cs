@@ -39,8 +39,8 @@ namespace Robno.Controllers
         public class ArtikalDTORacun
         {
             public int ProductId { get; set; }
-            public int ProductPopust { get; set; }
-            public int ProductProdajnaCijena { get; set; }
+            public string ProductPopust { get; set; }
+            public double ProductProdajnaCijena { get; set; }
             public string ProductKolicina { get; set; }
             public int ProductTarifa { get; set; }
          }
@@ -48,8 +48,8 @@ namespace Robno.Controllers
         public class ArtikalDTOPrimka
         {
             public int ProductId { get; set; }
-            public int ProductRabat { get; set; }
-            public int ProductNabavnaCijena { get; set; }
+            public string ProductRabat { get; set; }
+            public double ProductNabavnaCijena { get; set; }
             public string ProductKolicina { get; set; }
         }
 
@@ -147,7 +147,7 @@ namespace Robno.Controllers
                 novaStavka.Artikal = db.Artikals.Find(stavka.ProductId);
                 novaStavka.Tarifa = db.Tarifas.Find(stavka.ProductTarifa);
 
-                novaStavka.Popust = stavka.ProductPopust;
+                novaStavka.Popust = Convert.ToDouble(stavka.ProductPopust);
                 novaStavka.Kolicina = Convert.ToDouble(stavka.ProductKolicina);
                 novaStavka.ProdajnaCijena = stavka.ProductProdajnaCijena;
                 novaStavka.NabavnaCijena = db.Artikals.Find(stavka.ProductId).NabavnaCijena;
@@ -191,7 +191,7 @@ namespace Robno.Controllers
                 novaStavka.Primka = primka;
                 novaStavka.Artikal = db.Artikals.Find(stavka.ProductId);
 
-                novaStavka.Rabat = stavka.ProductRabat;
+                novaStavka.Rabat = Convert.ToDouble(stavka.ProductRabat);
                 novaStavka.Kolicina = Convert.ToDouble(stavka.ProductKolicina);
                 novaStavka.NabavnaCijena = stavka.ProductNabavnaCijena;
                 db.StavkaPrimkes.Add(novaStavka);

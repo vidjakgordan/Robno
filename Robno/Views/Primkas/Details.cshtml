@@ -92,6 +92,7 @@
         <th width="15%"> KOLICINA </th>
         <th width="20%"> NABAVNA CIJENA   </th>
         <th width="15%"> RABAT </th>
+        <th width="15%"> IZNOS </th>
     </tr>
     @foreach (var item in Model.StavkaPrimkes)
     {
@@ -106,6 +107,8 @@
             <td>@Html.DisplayFor(modelItem => item.NabavnaCijena)</td>
 
             <td>@Html.DisplayFor(modelItem => item.Rabat)</td>
+
+            <td>@(item.Kolicina*item.NabavnaCijena*(1-item.Rabat/100))</td>
 
         </tr>
     }

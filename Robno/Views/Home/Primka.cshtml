@@ -26,12 +26,12 @@
             var CartLine = function () {
                 var self = this;
                 self.artikal = ko.observable();
-                self.kolicina = ko.observable();
+                self.kolicina = ko.observable(0);
                 self.nabavnacijena = ko.observable(0);
                 self.rabat = ko.observable(0);
 
                 self.subtotal = ko.pureComputed(function () {
-                    return self.artikal() ? parseInt("0" + self.nabavnacijena(), 10) * (1 - 0.01 * self.rabat()) * parseInt("0" + self.kolicina(), 10) : 0;
+                    return self.artikal() ? self.nabavnacijena() * (1 - 0.01 * self.rabat()) * self.kolicina() : 0;
                 });
             };
 

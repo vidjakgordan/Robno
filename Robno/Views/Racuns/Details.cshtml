@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NacinPlacanja.Naziv)
+            @Html.DisplayNameFor(model => model.NacinPlacanja)
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
+            @Html.DisplayNameFor(model => model.PoslovniPartner)
         </dt>
 
         <dd>
@@ -87,12 +87,13 @@
 
 <table>
     <tr>
-        <th width="15%"> RBR </th>
-        <th width="35%"> ARTIKAL </th>
-        <th width="15%"> KOLICINA </th>
-        <th width="20%"> PRODAJNA CIJENA   </th>
-        <th width="15%"> POPUST </th>
+        <th width="5%"> RBR </th>
+        <th width="25%"> ARTIKAL </th>
+        <th width="10%"> KOLICINA </th>
         <th width="10%"> TARIFA </th>
+        <th width="10%"> CIJENA </th>
+        <th width="10%"> POPUST </th>
+        <th width="10%"> IZNOS </th>
     </tr>
     @foreach (var item in Model.StavkaRacunas)
     {
@@ -104,11 +105,14 @@
 
             <td>@Html.DisplayFor(modelItem => item.Kolicina)</td>
 
+            <td>@Html.DisplayFor(modelItem => item.Tarifa.Opis)</td>
+
             <td>@Html.DisplayFor(modelItem => item.ProdajnaCijena)</td>
 
-            <td>@Html.DisplayFor(modelItem => item.Popust)</td>
+            <td>@Html.DisplayFor(modelItem => item.Popust)%</td>
 
-            <td>@Html.DisplayFor(modelItem => item.Tarifa.Opis)</td>
+            <td>@(item.Kolicina*item.ProdajnaCijena*(1-item.Popust/100))</td>
+
 
         </tr>
     }

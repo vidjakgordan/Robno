@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,7 @@ namespace Robno.Models
         public int StavkaRacunaID { get; set; }
 
         public int? RedniBrojStavke { get; set; }
+
         public double? Kolicina { get; set; }
         public double? NabavnaCijena { get; set; }
         public double? ProdajnaCijena { get; set; }
