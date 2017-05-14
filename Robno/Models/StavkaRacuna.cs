@@ -12,9 +12,13 @@ namespace Robno.Models
 
         public int? RedniBrojStavke { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double? Kolicina { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double? NabavnaCijena { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double? ProdajnaCijena { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double? Popust { get; set; }
         
         public virtual Tarifa Tarifa { get; set; }

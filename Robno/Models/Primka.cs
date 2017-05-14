@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace Robno.Models
         [DisplayName("Tečaj valute")]
         public double? ValutaTecaj { get; set; }
         [DisplayName("Ukupni iznos")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public double? UkupniIznos { get; set; }
         public string Napomena { get; set; }
         public int? Status { get; set; } // za kasnije
