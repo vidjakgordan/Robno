@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
 using PagedList;
+using Rotativa;
 
 namespace Robno.Controllers
 {
@@ -39,6 +40,16 @@ namespace Robno.Controllers
                 return HttpNotFound();
             }
             return View(racun);
+        }
+
+        //rotativa - za printanje u pdf
+        public ActionResult PrintDetails(int id)
+        {
+            string filename = "Racun_" + id + ".pdf";
+            return new ActionAsPdf(
+                           "Details",
+                           new { id = id })
+            { FileName = filename };
         }
 
         // GET: Racuns/Create

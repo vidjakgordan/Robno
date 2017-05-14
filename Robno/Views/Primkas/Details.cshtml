@@ -4,8 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
+<h2>Details</h2>
+<br />
 <div>
     <h4>Primka</h4>
     <hr />
@@ -113,4 +114,7 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PrimkaID }) |
     @Html.ActionLink("Back to List", "Index")
+</p>
+<p>
+    @Html.ActionLink("Print", "PrintDetails", new { id = Model.PrimkaID })
 </p>

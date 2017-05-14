@@ -5,7 +5,7 @@
 }
 
 <h2>Details</h2>
-
+<br/>
 <div>
     <h4>Racun</h4>
     <hr />
@@ -118,4 +118,8 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.RacunID }) |
     @Html.ActionLink("Back to List", "Index")
+</p>
+
+<p>
+    @Html.ActionLink("Print", "PrintDetails", new { id = Model.RacunID })
 </p>
