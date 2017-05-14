@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using PagedList;
 
 namespace Robno.Controllers
 {
@@ -15,10 +16,14 @@ namespace Robno.Controllers
         private RobnoContext db = new RobnoContext();
 
         // GET: Racuns
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var racuns = db.Racuns.Include(r => r.NacinPlacanja).Include(r => r.PoslovniPartner);
-            return View(racuns.ToList());
+            var racuns = db.Racuns.Include(r => r.NacinPlacanja)
+                .Include(r => r.PoslovniPartner).OrderByDescending (r => r.RacunID);
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(racuns.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Racuns/Details/5

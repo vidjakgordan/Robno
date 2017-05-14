@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using PagedList;
 
 namespace Robno.Controllers
 {
@@ -14,9 +15,18 @@ namespace Robno.Controllers
     {
         private RobnoContext db = new RobnoContext();
 
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.OrderParm = String.IsNullOrEmpty(sortOrder) ? "naziv_asc" : "";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+            
             var artikals = from s in db.Artikals select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -33,7 +43,10 @@ namespace Robno.Controllers
                     break;
             }
 
-            return View(artikals.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return View(artikals.ToPagedList(pageNumber, pageSize));
         }
 
 

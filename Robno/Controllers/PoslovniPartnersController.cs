@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using PagedList;
 
 namespace Robno.Controllers
 {
@@ -15,12 +16,20 @@ namespace Robno.Controllers
         private RobnoContext db = new RobnoContext();
 
         // GET: PoslovniPartners
-        public ActionResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             //return View(db.PoslovniPartners.ToList());
 
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NazivSortParm = String.IsNullOrEmpty(sortOrder) ? "naziv_desc" : "";
             ViewBag.MjestoSortParm = sortOrder == "Mjesto" ? "mjesto_desc" : "Mjesto";
+
+            if (searchString != null)
+                page = 1;
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
 
             var poslovnipartneri = from s in db.PoslovniPartners select s;
 
@@ -44,7 +53,9 @@ namespace Robno.Controllers
                     poslovnipartneri = poslovnipartneri.OrderBy(s => s.PoslovniPartnerID);
                     break;
             }
-            return View(poslovnipartneri.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(poslovnipartneri.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: PoslovniPartners/Details/5

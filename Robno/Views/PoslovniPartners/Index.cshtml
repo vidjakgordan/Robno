@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Robno.Models.PoslovniPartner>
+﻿@model PagedList.IPagedList<Robno.Models.PoslovniPartner>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -10,10 +12,10 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "PoslovniPartners", FormMethod.Get))
 {
     <p>
-        Traži po imenu: @Html.TextBox("SearchString")
+        Traži po imenu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -21,37 +23,37 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.NazivSortParm })
+            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.NazivSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adresa)
+            ADRESA
         </th>
         <th>
-            @Html.ActionLink("Mjesto", "Index", new { sortOrder = ViewBag.MjestoSortParm })
+            @Html.ActionLink("Mjesto", "Index", new { sortOrder = ViewBag.MjestoSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OIB)
+            OIB
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tel)
+            TEL
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fax)
+            FAX
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Mail)
+            MAIL
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.WWW)
+            WWW
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ziro1)
+            ZIRO1
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ziro2)
+            ZIRO2
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Napomena)
+            NAPOMENA
         </th>
         <th></th>
     </tr>
@@ -100,3 +102,8 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

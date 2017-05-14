@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Robno.Models.Primka>
+﻿@model PagedList.IPagedList<Robno.Models.Primka>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -12,31 +14,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PrimkaID)
+            PrimkaID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PoslovniPartner.Naziv)
+            Poslovni partner
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Valuta.Naziv)
+            Valuza
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DatumIzdavanja)
+            Datum izdavanja
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DatumUnosa)
+            Datum unosa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ValutaTecaj)
+            Tecaj valute
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UkupniIznos)
+            Ukupni iznos
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Napomena)
+            Napomena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Status)
+            Status
         </th>
         <th></th>
     </tr>
@@ -79,3 +81,8 @@
 }
 
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

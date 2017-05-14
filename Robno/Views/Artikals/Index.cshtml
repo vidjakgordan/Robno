@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Robno.Models.Artikal>
+﻿@model PagedList.IPagedList<Robno.Models.Artikal>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -9,10 +12,10 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Artikals", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
@@ -20,36 +23,37 @@
     <tr>
         
         <th>
-            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.OrderParm })        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Opis)
+            @Html.ActionLink("Naziv", "Index", new { sortOrder = ViewBag.OrderParm, currentFilter = ViewBag.CurrentFilter })    
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BarCode)
+            Opis
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DodatnaSifra)
+            Barcode
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tezina)
+            Dodatna sifra
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NabavnaCijena)
+            Tezina
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProdajnaCijena)
+            Nabavna cijena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kolicina)
+            Prodajna cijena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ArtikalKlasa.Naziv)
+            Kolicina
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.JedinicaMjere.Naziv)
+            Klasa artikla
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tarifa.Opis)
+            Jedinica mjere
+        </th>
+        <th>
+            Porezna tarifa
         </th>
         <th></th>
     </tr>
@@ -98,3 +102,9 @@
 }
 
 </table>
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
