@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Novi račun", "../Home/Racun")
 </p>
 <table class="table">
     <tr>
@@ -74,9 +74,8 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RacunID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RacunID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RacunID })
+            @Html.ActionLink("Izmjena", "Edit", new { id=item.RacunID }) |
+            @Html.ActionLink("Pojedinosti", "Details", new { id=item.RacunID }) 
         </td>
     </tr>
 }

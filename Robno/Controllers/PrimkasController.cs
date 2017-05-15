@@ -115,7 +115,7 @@ namespace Robno.Controllers
         }
 
         // GET: Primkas/Delete/5
-        public ActionResult Delete(int? id)
+        /*public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -127,10 +127,10 @@ namespace Robno.Controllers
                 return HttpNotFound();
             }
             return View(primka);
-        }
+        }*/
 
         // POST: Primkas/Delete/5
-        [HttpPost, ActionName("Delete")]
+        /*[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -138,7 +138,7 @@ namespace Robno.Controllers
             db.Primkas.Remove(primka);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {

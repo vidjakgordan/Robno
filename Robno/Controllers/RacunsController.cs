@@ -53,12 +53,12 @@ namespace Robno.Controllers
         }
 
         // GET: Racuns/Create
-        public ActionResult Create()
+        /*public ActionResult Create()
         {
             ViewBag.NacinPlacanjaID = new SelectList(db.NacinPlacanjas, "NacinPlacanjaID", "Naziv");
             ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv");
             return View();
-        }
+        }*/
 
         // POST: Racuns/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -115,7 +115,7 @@ namespace Robno.Controllers
         }
 
         // GET: Racuns/Delete/5
-        public ActionResult Delete(int? id)
+        /*public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -127,10 +127,10 @@ namespace Robno.Controllers
                 return HttpNotFound();
             }
             return View(racun);
-        }
+        }*/
 
         // POST: Racuns/Delete/5
-        [HttpPost, ActionName("Delete")]
+        /*[HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -138,7 +138,7 @@ namespace Robno.Controllers
             db.Racuns.Remove(racun);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {

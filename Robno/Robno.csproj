@@ -317,13 +317,9 @@
     <Content Include="Views\PoslovniPartners\Index.cshtml" />
     <Content Include="Views\Home\Racun.cshtml" />
     <Content Include="Views\Home\Primka.cshtml" />
-    <Content Include="Views\Racuns\Create.cshtml" />
-    <Content Include="Views\Racuns\Delete.cshtml" />
     <Content Include="Views\Racuns\Details.cshtml" />
     <Content Include="Views\Racuns\Edit.cshtml" />
     <Content Include="Views\Racuns\Index.cshtml" />
-    <Content Include="Views\Primkas\Create.cshtml" />
-    <Content Include="Views\Primkas\Delete.cshtml" />
     <Content Include="Views\Primkas\Details.cshtml" />
     <Content Include="Views\Primkas\Edit.cshtml" />
     <Content Include="Views\Primkas\Index.cshtml" />
