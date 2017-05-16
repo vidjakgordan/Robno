@@ -116,9 +116,9 @@
 </table>
 
 <p>
-    @Html.ActionLink("Izmjena", "Edit", new { id = Model.PrimkaID }) |
-    @Html.ActionLink("Natrag na primke", "Index")
+    @Html.ActionLink("Izmjena", "Edit", new { id = Model.PrimkaID }, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Index", "Index", new { }, new { @class = "btn btn-primary" })
 </p>
 <p>
-    @Html.ActionLink("Print", "PrintDetails", new { id = Model.PrimkaID })
+    @Html.ActionLink("Print", "PrintDetails", new { id = Model.PrimkaID }, new { @class = "btn btn-success" })
 </p>

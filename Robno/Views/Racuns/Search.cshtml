@@ -11,6 +11,7 @@
         <th> Datum do: </th>
         <th> ID od: </th>
         <th> ID do: </th>
+        <th> PoslPartID: </th>
     <tr>
         <td>
             @(ViewBag.dateFrom)
@@ -23,6 +24,9 @@
         </td>
         <td>
            @(ViewBag.idTo)
+        </td>
+        <td>
+            @(ViewBag.PoslovniPartnerID)
         </td>
     </tr>
 </table>
@@ -156,3 +160,7 @@
     }
 
 </table>
+
+<div>
+    @Html.ActionLink("Index", "Index", new { }, new { @class = "btn btn-primary" })
+</div>

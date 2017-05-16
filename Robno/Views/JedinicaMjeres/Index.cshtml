@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Kratica)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JedinicaMjereID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JedinicaMjereID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JedinicaMjereID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.JedinicaMjereID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JedinicaMjereID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JedinicaMjereID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }

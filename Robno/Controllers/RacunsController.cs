@@ -21,6 +21,8 @@ namespace Robno.Controllers
         {
             var racuns = db.Racuns.Include(r => r.NacinPlacanja)
                 .Include(r => r.PoslovniPartner).OrderByDescending (r => r.RacunID);
+            // dodano
+            ViewBag.PoslovniPartnerID = new SelectList(db.PoslovniPartners, "PoslovniPartnerID", "Naziv");
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
@@ -55,7 +57,7 @@ namespace Robno.Controllers
         }
 
         
-        public ActionResult Search(string dateFrom, string dateTo, string idFrom, string idTo)
+        public ActionResult Search(string dateFrom, string dateTo, string idFrom, string idTo, int? PoslovniPartnerID)
         {
             var racun = from s in db.Racuns select s;
 
@@ -65,7 +67,7 @@ namespace Robno.Controllers
                 bool result = DateTime.TryParse(dateFrom, out dateF);
                 if (result)
                 {
-                    racun = racun.Where(r => r.DatumIzdavanja >= dateF);
+                    racun = racun.Where(r => r.DatumIzdavanja >= dateF.Date);
                     ViewBag.dateFrom = dateFrom;
                 }
             }
@@ -76,12 +78,12 @@ namespace Robno.Controllers
                 bool result = DateTime.TryParse(dateTo, out dateF);
                 if (result)
                 {
-                    racun = racun.Where(r => r.DatumIzdavanja <= dateF);
+                    racun = racun.Where(r => r.DatumIzdavanja <= dateF.Date);
                     ViewBag.dateTo = dateTo;
                 }
             }
 
-            if(idFrom != null)
+            if (idFrom != null)
             {
                 int idF;
                 bool result = int.TryParse(idFrom, out idF);
@@ -101,6 +103,12 @@ namespace Robno.Controllers
                     racun = racun.Where(r => r.RacunID <= idF);
                     ViewBag.idTo = idTo;
                 }
+            }
+
+            if(PoslovniPartnerID != null)
+            {
+                racun = racun.Where(r => r.PoslovniPartnerID == PoslovniPartnerID);
+                ViewBag.PoslovniPartnerID = PoslovniPartnerID;
             }
 
             //obrada raznih podataka za detalje!:

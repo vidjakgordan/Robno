@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nova primka", "../Home/Primka")
+    @Html.ActionLink("Nova primka", "../Home/Primka", new { }, new { @class ="btn btn-success"})
 </p>
 <table class="table">
     <tr>
@@ -73,15 +73,15 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Izmjena", "Edit", new { id=item.PrimkaID }) |
-            @Html.ActionLink("Pojedinosti", "Details", new { id=item.PrimkaID }) 
+            @Html.ActionLink("Izmjena", "Edit", new { id=item.PrimkaID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Pojedinosti", "Details", new { id=item.PrimkaID }, new { @class = "btn btn-info" })
         </td>
     </tr>
 }
 
 </table>
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Stranica @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

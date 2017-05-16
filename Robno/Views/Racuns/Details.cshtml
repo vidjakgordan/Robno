@@ -147,10 +147,10 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RacunID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Izmijeni", "Edit", new { id = Model.RacunID }, new { @class ="btn btn-warning"}) |
+    @Html.ActionLink("Index", "Index", new { }, new { @class = "btn btn-primary" })
 </p>
 
 <p>
-    @Html.ActionLink("Print", "PrintDetails", new { id = Model.RacunID })
+    @Html.ActionLink("Print", "PrintDetails", new { id = Model.RacunID }, new { @class = "btn btn-info" })
 </p>

@@ -120,28 +120,28 @@
         <tbody data-bind="foreach:artikli">
             <tr>
                 <td data-bind='with:artikal'>
-                    <span data-bind='text: Id'></span>
+                    <span data-bind='text: Id' class="form-control col-xs-2 disabled"></span>
                 </td>
                 <td>
-                    <select data-bind='options: my_json, optionsText:"Naziv", value: artikal'></select>
+                    <select data-bind='options: my_json, optionsText:"Naziv", value: artikal' class="btn btn-primary dropdown-toggle"></select>
                 </td>
                @* <td class='cijena' data-bind='with:artikal'>
                          <span data-bind='text: ProdajnaCijena'></span>
                  </td>*@
                 <td>
-                    <input data-bind='value: nabavnacijena' />
+                    <input data-bind='value: nabavnacijena' class="form-control col-xs-2" />
                 </td>
                 <td>
-                    <input data-bind='value: kolicina' />
+                    <input data-bind='value: kolicina' class="form-control col-xs-2"/>
                 </td>
                 <td>
-                    <input data-bind='value: rabat' />
+                    <input data-bind='value: rabat' class="form-control col-xs-2" />
                 </td>
                 <td>
-                    <span data-bind='text: formatirajValutu(subtotal()), value: subtotal'></span>
+                    <span data-bind='text: formatirajValutu(subtotal()), value: subtotal' class="form-control col-xs-2 disabled"></span>
                 </td>
                 <td>
-                    <a href='#' data-bind='click: $parent.removeLine'>Ukloni</a>
+                    <a href='#' data-bind='click: $parent.removeLine' class="btn btn-danger">Ukloni</a>
                 </td>
             </tr>
         </tbody>
@@ -156,5 +156,5 @@
 </h3>
 
 
-<button data-bind='click: $root.addLine'>DODAJ ARTIKAL</button> <br /><br />
-<button data-bind='click: $root.save'>POSALJI NARUDZBU</button>
+<button data-bind='click: $root.addLine' class="btn btn-info">DODAJ ARTIKAL</button> <br /><br />
+<button data-bind='click: $root.save' class="btn btn-success">POTVRDI PRIMKU</button>

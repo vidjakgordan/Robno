@@ -196,7 +196,7 @@ namespace Robno.Controllers
                 novaStavka.NabavnaCijena = stavka.ProductNabavnaCijena;
                 db.StavkaPrimkes.Add(novaStavka);
 
-                ukupniiznos = ukupniiznos + (double) novaStavka.NabavnaCijena * (double)novaStavka.Kolicina * (1 - (double)novaStavka.Rabat/100);
+                ukupniiznos += (double)novaStavka.NabavnaCijena * (double)novaStavka.Kolicina * (1 - (double)novaStavka.Rabat/100);
 
                 //stavljanje sa stanja skladista
                 

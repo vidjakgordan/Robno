@@ -9,8 +9,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Novi račun", "../Home/Racun")
+    @Html.ActionLink("Novi račun", "../Home/Racun", new { }, new { @class = "btn btn-success"})
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -74,8 +75,9 @@
             @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.ActionLink("Izmjena", "Edit", new { id=item.RacunID }) |
-            @Html.ActionLink("Pojedinosti", "Details", new { id=item.RacunID }) 
+            @Html.ActionLink("Izmjena", "Edit", new { id=item.RacunID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Pojedinosti", "Details", new { id=item.RacunID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Ispis", "PrintDetails", new { id = item.RacunID}, new { @class = "btn btn-success" })
         </td>
     </tr>
 }
@@ -83,17 +85,26 @@
 </table>
 
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Stranica @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 
-<b> Pretraga računa </b>
-@using (Html.BeginForm("Search", "Racuns"))
-{
-    <span>Datum od: </span><input type="text" name="dateFrom"/>
-    <span>Datum do: </span><input type="text" name="dateTo" />
-    <span>ID od: </span><input type="text" name="idFrom" />
-    <span>ID do: </span><input type="text" name="idTo" />
-    <input type="submit" value="Pretraga"/>
-}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>Pretraga računa</b></div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Search", "Racuns"))
+        {
+            <div class="form-group">
+                <div class="col-xs-2"><span>Datum od: </span><input class="form-control" type="text" name="dateFrom" /></div>
+                <div class="col-xs-2"><span>Datum do: </span><input class="form-control" type="text" name="dateTo" /></div>
+                <div class="col-xs-2"><span>ID od: </span><input class="form-control" type="text" name="idFrom" /> </div>
+                <div class="col-xs-2"><span>ID do: </span><input class="form-control" type="text" name="idTo" /> </div>
+                <div class="col-xs-2"><span>Poslovni Partner: </span>@Html.DropDownList("PoslovniPartnerID", (IEnumerable<SelectListItem>)ViewBag.PoslovniPartnerID, String.Empty, new { @class = "form-control" })</div>
+                <div class="col-xs-2"><span> </span><button type="submit" class="btn btn-primary btn-lg">Pretraži</button></div>
+
+            </div>
+        }
+    </div>
+</div>

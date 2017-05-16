@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
 </p>
 
 @using (Html.BeginForm("Index", "PoslovniPartners", FormMethod.Get))
@@ -94,9 +94,9 @@
             @Html.DisplayFor(modelItem => item.Napomena)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PoslovniPartnerID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PoslovniPartnerID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PoslovniPartnerID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.PoslovniPartnerID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PoslovniPartnerID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PoslovniPartnerID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
