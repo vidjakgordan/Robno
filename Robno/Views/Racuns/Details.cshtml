@@ -26,13 +26,15 @@
             @Html.DisplayFor(model => model.NacinPlacanja.Naziv)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PoslovniPartner)
-        </dt>
+        @if (Model.PoslovniPartner != null) { 
+            <dt>
+                @Html.DisplayNameFor(model => model.PoslovniPartner)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PoslovniPartner.Naziv)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.DatumIzdavanja)
@@ -42,17 +44,21 @@
             @Html.DisplayFor(model => model.DatumIzdavanja)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Napomena)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Napomena)
-        </dd>
+        @if (Model.Napomena != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Napomena)
+            </dt>
+        
+            <dd>
+                @Html.DisplayFor(model => model.Napomena)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.ZKI)
         </dt>
+        
 
         <dd>
             @Html.DisplayFor(model => model.ZKI)
@@ -74,18 +80,10 @@
             @Html.DisplayFor(model => model.UkupniIznos) kn
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
     </dl>
 </div>
 
-<table>
+<table class="table">
     <tr>
         <th width="5%"> RBR </th>
         <th width="25%"> ARTIKAL </th>
@@ -116,6 +114,35 @@
 
         </tr>
     }
+</table>
+<br/>
+<table class="table">
+    <tr>
+        <th> OPIS </th>
+        <th> OSNOVICA </th>
+        <th> POREZ </th>
+        <th> UKUPNO </th>
+
+    </tr>
+    
+    @foreach (var item in ViewBag.Porezi)
+    {
+        <tr>
+            <td>
+                @item.Key%
+            </td>
+            <td>
+                @(item.Value / (1 + item.Key /100))
+            </td>
+            <td>
+                @(item.Value / (1 + item.Key / 100) * item.Key/100)
+            </td>
+            <td>
+                @item.Value
+            </td>
+        </tr>
+    }
+    
 </table>
 
 

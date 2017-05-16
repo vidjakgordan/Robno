@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Robno.Models.Racun>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table class="table">
+    <tr>
+        <th> Datum od: </th>
+        <th> Datum do: </th>
+        <th> ID od: </th>
+        <th> ID do: </th>
+    <tr>
+        <td>
+            @(ViewBag.dateFrom)
+        </td>
+        <td>
+            @(ViewBag.dateTo)
+        </td>
+        <td>
+            @(ViewBag.idFrom)
+        </td>
+        <td>
+           @(ViewBag.idTo)
+        </td>
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <th> Ukupno izdano </th>
+        <th> Bruto: </th>
+        <th> Popust: </th>
+        <th> Neto - utržak: </th>
+    </tr>
+    <tr>
+        <td>
+            @(ViewBag.BrojRacuna)
+        </td>
+        <td>
+            @(ViewBag.Bruto)
+        </td>
+        <td>
+            @(ViewBag.Popust)
+        </td>
+        <td>
+            @(ViewBag.Neto)
+        </td>
+
+    </tr>
+</table>
+
+<table class="table">
+    <tr>
+        <th> OPIS </th>
+        <th> OSNOVICA </th>
+        <th> POREZ </th>
+        <th> UKUPNO </th>
+
+    </tr>
+
+    @foreach (var item in ViewBag.Porezi)
+    {
+        <tr>
+            <td>
+                @item.Key%
+            </td>
+            <td>
+                @(item.Value / (1 + item.Key / 100))
+            </td>
+            <td>
+                @(item.Value / (1 + item.Key / 100) * item.Key / 100)
+            </td>
+            <td>
+                @item.Value
+            </td>
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            Način plaćanja:
+        </th>
+        <th>
+            Iznos:
+        </th>
+    </tr>
+    @foreach (var item in ViewBag.NaciniPlacanja)
+    {
+        <tr>
+            <td>
+                @item.Key
+            </td>
+            <td>
+                @(item.Value)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+<br/>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RacunID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIzdavanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Napomena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZKI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JIR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UkupniIznos)
+        </th>
+        
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RacunID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumIzdavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Napomena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZKI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JIR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UkupniIznos)
+            </td>
+            
+        </tr>
+    }
+
+</table>

@@ -35,10 +35,109 @@ namespace Robno.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Racun racun = db.Racuns.Find(id);
+
             if (racun == null)
             {
                 return HttpNotFound();
             }
+
+            List<KeyValuePair<double, double>> test = new List<KeyValuePair<double, double>>();
+            //ubaceno za radit zbrojeve poreznih tarifa
+            foreach (StavkaRacuna stavka in racun.StavkaRacunas)
+            {
+                test.Add(new KeyValuePair<double, double>((double)stavka.Tarifa.Stopa, (double)stavka.ProdajnaCijena * (double)stavka.Kolicina * (1 - (double)stavka.Popust / 100)));
+            }
+            var result = test.GroupBy(r => r.Key).Select(r => new KeyValuePair<double, double>(r.Key, r.Sum(p => p.Value))).ToList();
+            ViewBag.Porezi = result;
+
+
+            return View(racun);
+        }
+
+        
+        public ActionResult Search(string dateFrom, string dateTo, string idFrom, string idTo)
+        {
+            var racun = from s in db.Racuns select s;
+
+            if (dateFrom != null)
+            {
+                DateTime dateF;
+                bool result = DateTime.TryParse(dateFrom, out dateF);
+                if (result)
+                {
+                    racun = racun.Where(r => r.DatumIzdavanja >= dateF);
+                    ViewBag.dateFrom = dateFrom;
+                }
+            }
+
+            if (dateTo != null)
+            {
+                DateTime dateF;
+                bool result = DateTime.TryParse(dateTo, out dateF);
+                if (result)
+                {
+                    racun = racun.Where(r => r.DatumIzdavanja <= dateF);
+                    ViewBag.dateTo = dateTo;
+                }
+            }
+
+            if(idFrom != null)
+            {
+                int idF;
+                bool result = int.TryParse(idFrom, out idF);
+                if(result)
+                {
+                    racun = racun.Where(r => r.RacunID >= idF);
+                    ViewBag.idFrom = idFrom;
+                }
+            }
+
+            if (idTo != null)
+            {
+                int idF;
+                bool result = int.TryParse(idTo, out idF);
+                if (result)
+                {
+                    racun = racun.Where(r => r.RacunID <= idF);
+                    ViewBag.idTo = idTo;
+                }
+            }
+
+            //obrada raznih podataka za detalje!:
+            ViewBag.BrojRacuna = racun.Count();
+
+            double bruto = 0, neto = 0;
+
+
+            List<KeyValuePair<double, double>> porez = new List<KeyValuePair<double, double>>();
+            List<KeyValuePair<string, double>> nacinplacanja = new List<KeyValuePair<string, double>>();
+
+            foreach (Racun rac in racun)
+            {
+                double netoracun = 0;
+                foreach (StavkaRacuna stavka in rac.StavkaRacunas)
+                {
+                    porez.Add(new KeyValuePair<double, double>((double)stavka.Tarifa.Stopa, (double)stavka.ProdajnaCijena * (double)stavka.Kolicina * (1 - (double)stavka.Popust / 100)));
+                    var brutotemp = (double)stavka.ProdajnaCijena * (double)stavka.Kolicina;
+                    netoracun += brutotemp * (1 - (double)stavka.Popust / 100);
+                    bruto += brutotemp;
+                }
+                neto += netoracun;
+                nacinplacanja.Add(new KeyValuePair<string, double>(rac.NacinPlacanja.Naziv, netoracun));
+            }
+
+            var porezi = porez.GroupBy(r => r.Key).Select(r => new KeyValuePair<double, double>(r.Key, r.Sum(p => p.Value))).ToList();
+            var naciniplacanja = nacinplacanja.GroupBy(r => r.Key).Select(r => new KeyValuePair<string, double>(r.Key, r.Sum(p => p.Value))).ToList();
+
+            ViewBag.Porezi = porezi;
+            ViewBag.NaciniPlacanja = naciniplacanja;
+
+            ViewBag.Bruto = bruto;
+            ViewBag.Neto = neto;
+            ViewBag.Popust = bruto - neto;
+
+
+
             return View(racun);
         }
 

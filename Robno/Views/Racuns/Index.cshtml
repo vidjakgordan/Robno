@@ -87,3 +87,13 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<b> Pretraga računa </b>
+@using (Html.BeginForm("Search", "Racuns"))
+{
+    <span>Datum od: </span><input type="text" name="dateFrom"/>
+    <span>Datum do: </span><input type="text" name="dateTo" />
+    <span>ID od: </span><input type="text" name="idFrom" />
+    <span>ID do: </span><input type="text" name="idTo" />
+    <input type="submit" value="Pretraga"/>
+}
