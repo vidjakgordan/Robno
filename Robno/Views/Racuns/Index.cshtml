@@ -97,8 +97,8 @@ Stranica @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.
         @using (Html.BeginForm("Search", "Racuns"))
         {
             <div class="form-group">
-                <div class="col-xs-2"><span>Datum od: </span><input class="form-control" type="text" name="dateFrom" /></div>
-                <div class="col-xs-2"><span>Datum do: </span><input class="form-control" type="text" name="dateTo" /></div>
+                <div class="col-xs-2"><span>Datum od: </span><input class="form-control" type="date" name="dateFrom" /></div>
+                <div class="col-xs-2"><span>Datum do: </span><input class="form-control" type="date" name="dateTo" /></div>
                 <div class="col-xs-2"><span>ID od: </span><input class="form-control" type="text" name="idFrom" /> </div>
                 <div class="col-xs-2"><span>ID do: </span><input class="form-control" type="text" name="idTo" /> </div>
                 <div class="col-xs-2"><span>Poslovni Partner: </span>@Html.DropDownList("PoslovniPartnerID", (IEnumerable<SelectListItem>)ViewBag.PoslovniPartnerID, String.Empty, new { @class = "form-control" })</div>
