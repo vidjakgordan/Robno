@@ -25,7 +25,12 @@
                     <li>@Html.ActionLink("O Robno", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @*@Html.Partial("_LoginPartial")*@
+                <!-- UBACENO -->
+                <div style="text-align:right">
+                    @*Hello, //@Model.UserName*@
+                    <a href="/Authentication/Logout">Logout</a>
+                </div>
             </div>
         </div>
     </div>

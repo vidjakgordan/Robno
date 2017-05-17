@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using Robno.Filters;
 
 namespace Robno
 {
@@ -7,7 +8,8 @@ namespace Robno
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //mijenjano
+            filters.Add(new ExceptionFilter());
         }
     }
 }

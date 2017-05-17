@@ -193,6 +193,8 @@
     <Compile Include="Controllers\ArtikalController.cs" />
     <Compile Include="Controllers\ArtikalKlasasController.cs" />
     <Compile Include="Controllers\ArtikalsController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JedinicaMjeresController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -202,12 +204,17 @@
     <Compile Include="Controllers\RacunsController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
     <Compile Include="Controllers\ValutasController.cs" />
+    <Compile Include="Filters\AdminFilter.cs" />
+    <Compile Include="Filters\ExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Artikal.cs" />
     <Compile Include="Models\ArtikalKlasa.cs" />
+    <Compile Include="Models\Auth\BusinessLayer.cs" />
+    <Compile Include="Models\Auth\UserDetails.cs" />
+    <Compile Include="Models\Auth\UserStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JedinicaMjere.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -329,6 +336,7 @@
     <Content Include="Views\Artikals\Edit.cshtml" />
     <Content Include="Views\Artikals\Index.cshtml" />
     <Content Include="Views\Racuns\Search.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

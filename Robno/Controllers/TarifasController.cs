@@ -7,11 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [Authorize]
     public class TarifasController : Controller
     {
+        
         private RobnoContext db = new RobnoContext();
 
         // GET: Tarifas
