@@ -170,12 +170,13 @@ namespace Robno.Models
             {
                 new User()
                 {
-                    Username = "Ante", Password="Ante"
+                    Username="Gordan", Password="sha1:64000:18:RYW0mCRmY4BKRdkY25Hc3tXqVxSs8Mk3:WdqGB7KGJNMqJCyMSg36Qv13", isAdmin=true
                 },
                 new User()
                 {
-                    Username="Jure", Password="Jure"
+                    Username="Pero", Password="sha1:64000:18:c5DcWgUHMfeo87ue4MvT4YztcwY8bghf:gSTuQK8EiZmEEgncd24LxFvl", isAdmin=false
                 }
+            
             };
             korisnici.ForEach(p => context.Users.Add(p));
             context.SaveChanges();

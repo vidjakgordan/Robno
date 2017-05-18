@@ -7,115 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using Robno.Models.Auth;
 using Robno.Filters;
 
 namespace Robno.Controllers
 {
-    [Authorize]
-    public class ValutasController : Controller
+    [AdminFilter]
+    public class UsersController : Controller
     {
+        
         private RobnoContext db = new RobnoContext();
 
-        // GET: Valutas
+        // GET: Users
         public ActionResult Index()
         {
-            return View(db.Valutas.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: Valutas/Details/5
+        // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Valuta valuta = db.Valutas.Find(id);
-            if (valuta == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(valuta);
+            return View(user);
         }
 
-        // GET: Valutas/Create
+        // GET: Users/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        [AdminFilter]
-        // POST: Valutas/Create
+        // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ValutaID,Naziv,Kratica")] Valuta valuta)
+        public ActionResult Create([Bind(Include = "UserID,Username,Password,isAdmin")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Valutas.Add(valuta);
+                user.Password = PasswordStorage.CreateHash(user.Password);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(valuta);
+            return View(user);
         }
 
-        // GET: Valutas/Edit/5
+        // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Valuta valuta = db.Valutas.Find(id);
-            if (valuta == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(valuta);
+            return View(user);
         }
 
-        [AdminFilter]
-        // POST: Valutas/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ValutaID,Naziv,Kratica")] Valuta valuta)
+        public ActionResult Edit([Bind(Include = "UserID,Username,Password,isAdmin")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(valuta).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(valuta);
+            return View(user);
         }
 
-        // GET: Valutas/Delete/5
+        // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Valuta valuta = db.Valutas.Find(id);
-            if (valuta == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(valuta);
+            return View(user);
         }
 
-        [AdminFilter]
-        // POST: Valutas/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Valuta valuta = db.Valutas.Find(id);
-            db.Valutas.Remove(valuta);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
 using PagedList;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [Authorize]
     public class PoslovniPartnersController : Controller
     {
         private RobnoContext db = new RobnoContext();
@@ -82,6 +84,7 @@ namespace Robno.Controllers
         // POST: PoslovniPartners/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PoslovniPartnerID,Naziv,Adresa,Mjesto,OIB,Tel,Fax,Mail,WWW,Ziro1,Ziro2,Napomena")] PoslovniPartner poslovniPartner)
@@ -114,6 +117,7 @@ namespace Robno.Controllers
         // POST: PoslovniPartners/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PoslovniPartnerID,Naziv,Adresa,Mjesto,OIB,Tel,Fax,Mail,WWW,Ziro1,Ziro2,Napomena")] PoslovniPartner poslovniPartner)
@@ -143,6 +147,7 @@ namespace Robno.Controllers
         }
 
         // POST: PoslovniPartners/Delete/5
+        [AdminFilter]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

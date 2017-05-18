@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Robno.Models;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [Authorize]
     public class ArtikalController : ApiController
     {
         private RobnoContext db = new RobnoContext();
@@ -126,6 +128,7 @@ namespace Robno.Controllers
 
         // POST api/Artikal
         //[ResponseType(typeof(Artikal))]
+        
         [Route("Racun")]
         public IHttpActionResult Racun(IEnumerable<ArtikalDTORacun> stavke) // za Racun
         {
@@ -170,6 +173,7 @@ namespace Robno.Controllers
 
         // POST api/Artikal
         //[ResponseType(typeof(Artikal))]
+        [AdminFilter]
         [HttpPost]
         [Route("Primka")]
         public IHttpActionResult Primka(IEnumerable<ArtikalDTOPrimka> stavke) // za Primku

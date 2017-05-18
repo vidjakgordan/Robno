@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Robno.Models.Auth;
 
 namespace Robno.Models.Auth
 {
@@ -15,11 +16,11 @@ namespace Robno.Models.Auth
 
                 
 
-            if (u.UserName == user.Username && u.Password == user.Password && user.isAdmin==true)
+            if (u.UserName == user.Username && PasswordStorage.VerifyPassword(u.UserName, user.Password) && user.isAdmin==true)
             {
                 return UserStatus.AuthenticatedAdmin; //enum
             }
-            else if (u.UserName == user.Username && u.Password == user.Password && user.isAdmin==false)
+            else if (u.UserName == user.Username && PasswordStorage.VerifyPassword(u.UserName, user.Password)  && user.isAdmin==false)
             {
                 return UserStatus.AuthenticatdUser;   //enum
             }

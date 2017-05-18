@@ -9,9 +9,11 @@ using System.Web.Mvc;
 using Robno.Models;
 using PagedList;
 using Rotativa;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [AdminFilter]
     public class PrimkasController : Controller
     {
         private RobnoContext db = new RobnoContext();

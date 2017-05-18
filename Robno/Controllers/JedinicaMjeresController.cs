@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [Authorize]
     public class JedinicaMjeresController : Controller
     {
         private RobnoContext db = new RobnoContext();
@@ -44,6 +46,7 @@ namespace Robno.Controllers
         // POST: JedinicaMjeres/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "JedinicaMjereID,Naziv,Kratica")] JedinicaMjere jedinicaMjere)
@@ -76,6 +79,7 @@ namespace Robno.Controllers
         // POST: JedinicaMjeres/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "JedinicaMjereID,Naziv,Kratica")] JedinicaMjere jedinicaMjere)
@@ -105,6 +109,7 @@ namespace Robno.Controllers
         }
 
         // POST: JedinicaMjeres/Delete/5
+        [AdminFilter]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

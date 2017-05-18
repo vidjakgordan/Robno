@@ -13,7 +13,7 @@ using Robno.Filters;
 
 namespace Robno.Controllers
 {
-    [AdminFilter]
+    [Authorize]
     public class RacunsController : Controller
     {
         private RobnoContext db = new RobnoContext();
@@ -172,6 +172,7 @@ namespace Robno.Controllers
         // POST: Racuns/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status,PoslovniPartnerID,NacinPlacanjaID")] Racun racun)
@@ -208,6 +209,7 @@ namespace Robno.Controllers
         // POST: Racuns/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RacunID,DatumIzdavanja,Napomena,ZKI,JIR,UkupniIznos,Status,PoslovniPartnerID,NacinPlacanjaID")] Racun racun)

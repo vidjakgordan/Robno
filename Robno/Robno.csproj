@@ -203,6 +203,7 @@
     <Compile Include="Controllers\PrimkasController.cs" />
     <Compile Include="Controllers\RacunsController.cs" />
     <Compile Include="Controllers\TarifasController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValutasController.cs" />
     <Compile Include="Filters\AdminFilter.cs" />
     <Compile Include="Filters\ExceptionFilter.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\Artikal.cs" />
     <Compile Include="Models\ArtikalKlasa.cs" />
     <Compile Include="Models\Auth\BusinessLayer.cs" />
+    <Compile Include="Models\Auth\PasswordStorage.cs" />
     <Compile Include="Models\Auth\UserDetails.cs" />
     <Compile Include="Models\Auth\UserStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,6 +342,11 @@
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Home\ViewAdmin.cshtml" />
     <Content Include="Views\Home\ViewUser.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -47,6 +47,7 @@ namespace Robno.Controllers
         // POST: Tarifas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TarifaID,Opis,Stopa")] Tarifa tarifa)
@@ -76,6 +77,7 @@ namespace Robno.Controllers
             return View(tarifa);
         }
 
+        [AdminFilter]
         // POST: Tarifas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -107,6 +109,7 @@ namespace Robno.Controllers
             return View(tarifa);
         }
 
+        [AdminFilter]
         // POST: Tarifas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

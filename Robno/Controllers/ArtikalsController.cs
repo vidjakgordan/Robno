@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using Robno.Models;
 using PagedList;
+using Robno.Filters;
 
 namespace Robno.Controllers
 {
+    [Authorize]
     public class ArtikalsController : Controller
     {
         private RobnoContext db = new RobnoContext();
@@ -77,6 +79,7 @@ namespace Robno.Controllers
         // POST: Artikals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,JedinicaMjereID,ArtikalKlasaID,TarifaID")] Artikal artikal)
@@ -115,6 +118,7 @@ namespace Robno.Controllers
         // POST: Artikals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AdminFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ArtikalID,Naziv,Opis,BarCode,DodatnaSifra,Tezina,NabavnaCijena,ProdajnaCijena,Kolicina,JedinicaMjereID,ArtikalKlasaID,TarifaID")] Artikal artikal)
@@ -147,6 +151,7 @@ namespace Robno.Controllers
         }
 
         // POST: Artikals/Delete/5
+        [AdminFilter]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
