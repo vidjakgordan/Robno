@@ -31,14 +31,14 @@
 
             {
                 <div class="form-group">
-                    @Html.LabelFor(c => c.UserName)
+                    <p>Korisničko ime</p>
                     @Html.TextBoxFor(x => x.UserName, new { @class="form-control"})
                     @Html.ValidationMessageFor(x => x.UserName)
                 </div>
                 <br />
 
                 <div class="form-group">
-                    @Html.LabelFor(x => x.Password)
+                    <p>Lozinka</p>
                     @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
                     @Html.ValidationMessageFor(x => x.Password)
                 </div>

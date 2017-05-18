@@ -15,6 +15,16 @@ namespace Robno.Controllers
             if (User.Identity.IsAuthenticated)
                 return View("ViewUser");
 
+            return RedirectToAction("Login", "Authentication");
+        }
+
+        public ActionResult ViewAdmin()
+        {
+            return View();
+        }
+
+        public ActionResult ViewUser()
+        {
             return View();
         }
 

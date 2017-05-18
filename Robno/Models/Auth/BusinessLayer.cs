@@ -10,8 +10,10 @@ namespace Robno.Models.Auth
     {
         public UserStatus GetUserValidity(UserDetails u)   //from lab23 onw
         {
-            RobnoContext db = new RobnoContext();
+            if (u.UserName == null || u.Password==null) return UserStatus.NonAuthenticatedUser;
 
+            RobnoContext db = new RobnoContext();
+            
             User user = db.Users.Where(p => p.Username == u.UserName).SingleOrDefault();
 
                 

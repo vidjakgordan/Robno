@@ -19,18 +19,15 @@
                 </button>
                 @Html.ActionLink("Robno", "Index", "Home", new { area = "" },   new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" style="align-content:space-between">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("O Robno", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
-                @*@Html.Partial("_LoginPartial")*@
-                <!-- UBACENO -->
-                <div style="text-align:right" >
-                    @*Hello, //@Model.UserName*@
-                    <a href="/Authentication/Logout" class="btn btn-danger">Logout</a>
-                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/Authentication/Logout" class="btn btn-danger">Logout</a></li>
+                </ul>
             </div>
         </div>
     </div>
