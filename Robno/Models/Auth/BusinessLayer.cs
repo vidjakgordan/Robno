@@ -9,11 +9,17 @@ namespace Robno.Models.Auth
     {
         public UserStatus GetUserValidity(UserDetails u)   //from lab23 onw
         {
-            if (u.UserName == "Admin" && u.Password == "Admin")
+            RobnoContext db = new RobnoContext();
+
+            User user = db.Users.Where(p => p.Username == u.UserName).SingleOrDefault();
+
+                
+
+            if (u.UserName == user.Username && u.Password == user.Password && user.isAdmin==true)
             {
                 return UserStatus.AuthenticatedAdmin; //enum
             }
-            else if (u.UserName == "Gordan" && u.Password == "Gordan")
+            else if (u.UserName == user.Username && u.Password == user.Password && user.isAdmin==false)
             {
                 return UserStatus.AuthenticatdUser;   //enum
             }

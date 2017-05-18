@@ -30,5 +30,6 @@ namespace Robno.Models
         public DbSet<Primka> Primkas { get; set; }
         public DbSet<Valuta> Valutas { get; set; }
         public DbSet<StavkaPrimke> StavkaPrimkes { get; set; }
+        public DbSet<User> Users { get; set;}
     }
 }

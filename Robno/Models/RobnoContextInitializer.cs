@@ -166,6 +166,20 @@ namespace Robno.Models
             stavkaracuna.ForEach(p => context.StavkaRacunas.Add(p));
             context.SaveChanges();
 
+            var korisnici = new List<User>()
+            {
+                new User()
+                {
+                    Username = "Ante", Password="Ante"
+                },
+                new User()
+                {
+                    Username="Jure", Password="Jure"
+                }
+            };
+            korisnici.ForEach(p => context.Users.Add(p));
+            context.SaveChanges();
+
 
 
 
