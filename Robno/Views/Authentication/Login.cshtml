@@ -6,54 +6,52 @@
     Layout = null;
 
 }
-
 <!DOCTYPE html>
 
 <html>
 
+
 <head>
-
-    <meta name="viewport" content="width=device-width" />
-
-    <title>Login</title>
-
-    <script src="~/Scripts/jquery-1.8.0.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Robno</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 
 <body>
+    <br /><br /><br />
+    <div class="panel panel-default" style="max-width: 400px; margin-left:auto; margin-right: auto">
+        <div class="panel-heading">Dobrodošli u Robno.</div>
+        <div class="panel-body">
+            @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
+            @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
 
-    <div>
+            {
+                <div class="form-group">
+                    @Html.LabelFor(c => c.UserName)
+                    @Html.TextBoxFor(x => x.UserName, new { @class="form-control"})
+                    @Html.ValidationMessageFor(x => x.UserName)
+                </div>
+                <br />
 
-        @Html.ValidationMessage("CredentialError", new { style = "color:red;" })
-        @using (Html.BeginForm("DoLogin", "Authentication", FormMethod.Post))
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Password)
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <br />
+                <input type="submit" name="BtnSubmit" value="Login" class="btn btn-success"  />
 
-        {
+            }
 
-            @Html.LabelFor(c => c.UserName)
-
-            @Html.TextBoxFor(x => x.UserName)
-
-            @Html.ValidationMessageFor(x => x.UserName) <!-- This time instead of Html.ValidationMessage we have used Html.ValidationMessageFor. Both will do same thing. 
-                                                            Html.ValidationMessageFor can be used only when the view is strongly typed view.-->
-
-            <br />
-
-           <p>Password</p>
-
-            @Html.PasswordFor(x => x.Password)
-
-            <br />
-
-
-            <input type="submit" name="BtnSubmit" value="Login" />
-
-        }
-
+        </div>
     </div>
 
+
+    
 </body>
 
 </html>

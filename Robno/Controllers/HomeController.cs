@@ -10,6 +10,11 @@ namespace Robno.Controllers
     {
         public ActionResult Index()
         {
+            if (Convert.ToBoolean(HttpContext.Session["IsAdmin"]))
+                return View("ViewAdmin");
+            if (User.Identity.IsAuthenticated)
+                return View("ViewUser");
+
             return View();
         }
 

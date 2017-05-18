@@ -337,6 +337,8 @@
     <Content Include="Views\Artikals\Index.cshtml" />
     <Content Include="Views\Racuns\Search.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Home\ViewAdmin.cshtml" />
+    <Content Include="Views\Home\ViewUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

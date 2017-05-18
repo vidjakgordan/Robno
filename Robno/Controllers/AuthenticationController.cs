@@ -11,7 +11,9 @@ namespace Robno.Controllers
         // GET: Authentication
         public ActionResult Login()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home"); //ako je vec logiran, onda idemo odma na glavni izbornik
+            return View(); // inace view za unos login podataka
         }
 
         [HttpPost]
@@ -40,7 +42,7 @@ namespace Robno.Controllers
                 
                 
                 Session["IsAdmin"] = IsAdmin;
-                return RedirectToAction("Index", "Valutas");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -50,6 +52,7 @@ namespace Robno.Controllers
 
         public ActionResult Logout()
         {
+            Session["isAdmin"] = false;
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
