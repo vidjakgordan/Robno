@@ -13,7 +13,7 @@ using Robno.Filters;
 
 namespace Robno.Controllers
 {
-    [Authorize]
+    [System.Web.Http.Authorize]
     public class ArtikalController : ApiController
     {
         private RobnoContext db = new RobnoContext();
@@ -128,7 +128,7 @@ namespace Robno.Controllers
 
         // POST api/Artikal
         //[ResponseType(typeof(Artikal))]
-        
+        [HttpPost]
         [Route("Racun")]
         public IHttpActionResult Racun(IEnumerable<ArtikalDTORacun> stavke) // za Racun
         {
@@ -174,8 +174,8 @@ namespace Robno.Controllers
         // POST api/Artikal
         //[ResponseType(typeof(Artikal))]
         [AdminFilter]
-        [HttpPost]
-        [Route("Primka")]
+        [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("Primka")]
         public IHttpActionResult Primka(IEnumerable<ArtikalDTOPrimka> stavke) // za Primku
         {
             if (stavke.Count() == 0) return NotFound(); // ako su stavke prazne - ne moze bit primka bez stavki

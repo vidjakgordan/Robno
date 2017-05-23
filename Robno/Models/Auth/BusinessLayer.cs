@@ -15,7 +15,8 @@ namespace Robno.Models.Auth
             RobnoContext db = new RobnoContext();
             
             User user = db.Users.Where(p => p.Username == u.UserName).SingleOrDefault();
-
+            if (user == null)
+                return UserStatus.NonAuthenticatedUser;
                 
 
             if (u.UserName == user.Username && PasswordStorage.VerifyPassword(u.UserName, user.Password) && user.isAdmin==true)

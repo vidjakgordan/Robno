@@ -10,13 +10,13 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Novi artikal", "Create", new { }, new { @class = "btn btn-success" })
 </p>
 @using (Html.BeginForm("Index", "Artikals", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        Pretraži po nazivu @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Traži" />
     </p>
 }
 <table class="table">
@@ -94,9 +94,9 @@
             @Html.DisplayFor(modelItem => item.Tarifa.Opis)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ArtikalID }, new { @class = "btn btn-warning" }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ArtikalID }, new { @class = "btn btn-info" }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArtikalID }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Izmijeni", "Edit", new { id=item.ArtikalID }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Detalji", "Details", new { id=item.ArtikalID }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.ArtikalID }, new { @class = "btn btn-danger" })
         </td>
     </tr>
 }
@@ -104,7 +104,7 @@
 </table>
 
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+Stranica @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) od @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

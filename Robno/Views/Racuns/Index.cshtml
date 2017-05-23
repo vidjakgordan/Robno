@@ -38,9 +38,7 @@
         <th>
             Ukupni iznos
         </th>
-        <th>
-            Status
-        </th>
+        
 
         <th></th>
     </tr>
@@ -71,9 +69,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.UkupniIznos) kn
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
+        
         <td>
             @Html.ActionLink("Izmjena", "Edit", new { id=item.RacunID }, new { @class = "btn btn-warning" }) |
             @Html.ActionLink("Pojedinosti", "Details", new { id=item.RacunID }, new { @class = "btn btn-info" }) |

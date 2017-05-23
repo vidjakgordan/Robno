@@ -103,7 +103,7 @@ namespace Robno.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PrimkaID,DatumIzdavanja,DatumUnosa,ValutaTecaj,UkupniIznos,Napomena,Status,PoslovniPartnerID,ValutaID")] Primka primka)
+        public ActionResult Edit([Bind(Include = "PrimkaID,DatumIzdavanja, DatumUnosa, UkupniIznos,ValutaTecaj,Napomena,Status,PoslovniPartnerID,ValutaID")] Primka primka)
         {
             if (ModelState.IsValid)
             {

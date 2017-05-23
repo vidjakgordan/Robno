@@ -87,6 +87,7 @@ namespace Robno.Controllers
         {
             if (ModelState.IsValid)
             {
+                user.Password = PasswordStorage.CreateHash(user.Password);
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
